@@ -1,4 +1,19 @@
-.container{
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+
+.container_anfang, 
+.container_spiel_einfach,
+.container_spiel_schwer {
+  /* border: 1px solid var(--line-clr); */
+  border-radius: 1em;
+  border: 2px solid var(--blau-2);
+  margin-top: -2%;
+  padding: 4%;
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,3 +25,321 @@
     border-radius: 2%;
   }
 }
+#container_spiel_einfach_richtig {
+  border: 2px solid var(--gruen-2);
+}
+#container_spiel_einfach_falsch {
+  border: 2px solid var(--rot-2);
+}
+
+
+
+
+
+
+.ee_bild {
+  content: "";
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10%;
+
+  /* border: 10px solid red; */
+  position: relative;
+}
+.ee_bild::after,
+.ee_bild::before {
+  --angle: 0deg;
+  content: "";
+  position: absolute;
+  height: 103%;
+  width: 83%;
+
+  background-image: conic-gradient(from var(--angle), blue, black, white, blue);
+
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 5px;
+  border-radius: 2%;
+  animation: 6s spin linear infinite;
+}
+.ee_bild::before {
+  filter: blur(1.5rem);
+  opacity: 0.5;
+}
+
+
+.frage_bild {
+  margin-bottom: 2%;
+}
+
+
+
+.container_richt_fal_z1,
+.container_richt_fal_z2 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-evenly;
+
+  /* background-color: green; */
+  width: 100%;
+  /* margin-top: 5%; */
+  padding: 1%;
+}
+
+.container_richt_fal_z2 {
+  background-color: none;
+}
+
+
+.btn_antwort_1,
+.btn_antwort_2,
+.btn_antwort_3,
+.btn_antwort_4 {
+  color: var(--line-clr);
+  border-radius: .5em;
+  padding: 1.0em 4.0em;
+  border: 0;
+
+  border: 4px solid var(--secondary-text-clr);
+  background-color: var(--blau-2);
+  
+  width: 40%;
+  /* height: 40%; */
+  cursor: pointer;
+  content: "TEST";
+
+  white-space: nowrap;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+#btn_antwort_richtig {
+  border: 4px solid var(--gruen-1);
+  background-color: var(--gruen-2);
+}
+#btn_antwort_falsch {
+  border: 4px solid var(--rot-1);
+  background-color: var(--rot-2);
+}
+.btn_antwort_1:hover,
+.btn_antwort_2:hover,
+.btn_antwort_3:hover,
+.btn_antwort_4:hover {
+  background-color: var(--blau-1);
+}
+.btn_antwort_1 span,
+.btn_antwort_2 span,
+.btn_antwort_3 span,
+.btn_antwort_4 span {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+
+  width: 100px;
+}
+
+
+/* .btn_antwort_2 {
+  background-color: red;
+}
+.btn_antwort_4 {
+  background-color: var(--blau-2);
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.schwierigkeitsauswahl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5em;
+  margin: 0px;
+
+  padding: 2%;
+}
+
+/* FANCY BUTTON */
+.container_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  /* background-color: green; */
+}
+
+
+#btn_einfach,
+#btn_schwer {
+  position: relative;
+  transition: transform .4s;
+
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  margin-bottom: 30px;
+}
+
+.btn_einfach_inhalt,
+.btn_schwer_inhalt {
+  position: relative;
+  background: var(--gradient-color-blau);
+  padding: 1.25rem 2.5rem;
+  /* padding: 1.5rem 3rem; */
+  border-radius: 4rem;
+  border: 3px solid black;
+  color: black;
+  display: flex;
+  align-items: center;
+  column-gap: .5rem;
+  overflow: hidden;
+}
+.btn_schwer_inhalt {
+  background: var(--gradient-color-rot);
+}
+
+.btn_einfach_text {
+  font-weight: 700;
+}
+.btn_einfach_text {
+  position: relative;
+  z-index: 2;
+}
+.btn_reflektion_1, 
+.btn_reflektion_2 {
+  width: 8px;
+  height: 120px;
+  background-color: var(--reflection-color);
+  rotate: 30deg;
+  position: absolute;
+  inset: 0;
+  top: 0;
+  left: -190%;
+  margin: auto;
+  transition: left .6s cubic-bezier(.2, .5, .2, 1.2);
+}
+.btn_reflektion_1::after {
+  content: "";
+  width: 26px;
+  height: 100%;
+  background-color: var(--reflection-color);
+  position: absolute;
+  top: -1rem;
+  left: 1.25rem;
+}
+.btn_reflektion_2::after {
+  content: "";
+  width: 40px;
+  height: 100%;
+  background-color: var(--reflection-color);
+  position: absolute;
+  top: -1rem;
+  left: .8rem;
+}
+
+.btn_schatten_einfach,
+.btn_schatten_schwer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: var(--gradient-color-blau);
+  padding: 1.25rem 3rem;
+  border-radius: 4rem;
+  border: 3px solid black;
+  z-index: -1;
+  transition: transform .3s;
+}
+.btn_schatten_schwer {
+  background: var(--gradient-color-rot);
+}
+
+#btn_einfach:hover .btn_schatten_einfach,
+#btn_schwer:hover .btn_schatten_schwer {
+  transform: translate(-.5rem, .5rem);
+}
+#btn_einfach:hover .btn_reflektion_1,
+#btn_schwer:hover .btn_reflektion_1 {
+  left: 120%;
+}
+#btn_einfach:hover .btn_reflektion_2,
+#btn_schwer:hover .btn_reflektion_2 {
+  left: -70%;
+}
+
+
+#btn_einfach:hover,
+#btn_schwer:hover {
+  transform: scale(1.1);
+  transition-delay: .1s;
+}
+#btn_einfach:hover,
+#btn_schwer:hover {
+  transform: rotate(-4deg) scale(1.1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.hide {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
