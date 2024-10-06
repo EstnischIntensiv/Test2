@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg" href="icons/EST_DE_30_grad.svg">
-  <title>Estnisch Lernen Test</title>
+  <title>Estnisch Lernen</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <script type="text/javascript" src="assets/js/script.js" defer></script>
+  <!-- <script type="text/javascript" src="assets/Spiele/js/script_landkreise_ee.js" defer></script> -->
 </head>
 
 
@@ -21,7 +22,7 @@
       </li>
 
       
-      <li>
+      <!-- <li>
         <button id="btn_1" class="button-class">
           <svg class="icon"><use xlink:href="icons/sprite.svg#home"></use></svg>
           <span>Button 1</span>
@@ -33,19 +34,20 @@
           <svg class="icon"><use xlink:href="icons/sprite.svg#home"></use></svg>
           <span>Button 2</span>
         </button>
-      </li>
+      </li> -->
 
 
 
       
       <li>
-        <button class="btn_ungedrueckt" data-content="assets/Lektionen/home.html">
+        <button class="btn_ungedrueckt" data-content="assets/Lektionen/home.html"
+                                        data-content-2="assets/Lektionen/js/script_lektion_1.js">
           <svg class="icon"><use xlink:href="icons/sprite.svg#home"></use></svg>
-          <span>Home A</span>
+          <span>Home</span>
         </button>
       </li>
 
-      <li>
+      <!-- <li>
         <button class="btn_ungedrueckt" data-content="assets/Lektionen/home.html">
           <svg class="icon"><use xlink:href="icons/sprite.svg#pen"></use></svg>
           <span>Home B</span>
@@ -57,7 +59,7 @@
           <svg class="icon"><use xlink:href="icons/sprite.svg#dashboard"></use></svg>
           <span>Button C</span>
         </button>
-      </li>
+      </li> -->
 
 
       <li>
@@ -68,13 +70,14 @@
         </button>
         <ul class="sub-menu">
           <div>
-            <li><button class="btn_lek_i_ungedr" data-content="assets/Lektionen/lektion_1.html"><span>Lektion 1</span></button></li>
-            <li><button class="btn_lek_i_ungedr" data-content="assets/Lektionen/lektion_2.html"><span>Lektion 2</span></button></li>
-            <li><button class="btn_lek_i_ungedr" data-content="assets/Lektionen/lektion_3.html"><span>Lektion 3</span></button></li>
-            <li><button class="btn_lek_i_ungedr" data-content="assets/Lektionen/lektion_4.html"><span>Lektion 4</span></button></li>
-
-            <!-- <li><a class="lek_i">Lektion 1</a></li>
-            <li><button class="btn_ungedrueckt"><span>Test</span></button></li> -->
+            <li><button class="btn_lek_i_ungedr" data-content="assets/Lektionen/lektion_1.html"
+                                                 data-content-2="assets/Lektionen/js/script_lektion_1.js"><span>Lektion 1</span></button></li>
+            <li><button class="btn_lek_i_ungedr" data-content="assets/Lektionen/lektion_2.html"
+                                                 data-content-2="assets/Lektionen/js/script_lektion_2.js"><span>Lektion 2</span></button></li>
+            <li><button class="btn_lek_i_ungedr" data-content="assets/Lektionen/lektion_3.html"
+                                                 data-content-2="assets/Lektionen/js/script_lektion_3.js"><span>Lektion 3</span></button></li>
+            <li><button class="btn_lek_i_ungedr" data-content="assets/Lektionen/lektion_4.html"
+                                                 data-content-2="assets/Lektionen/js/script_lektion_4.js"><span>Lektion 4</span></button></li>
           </div>
         </ul>
       </li>
@@ -82,14 +85,16 @@
 
       <li>
         <button onclick=toggleSubMenu(this) class="btn_vokabeltrainer">
-          <svg class="icon"><use xlink:href="icons/sprite.svg#book_2"></use></svg>
+          <svg class="icon"><use xlink:href="icons/sprite.svg#pen"></use></svg>
           <span>Vokabeltrainer</span>
           <svg class="icon_pfeil"><use xlink:href="icons/sprite.svg#keyboard_arrow_down"></use></svg>
         </button>
         <ul class="sub-menu">
           <div>
-            <li><button class="btn_vokabeltrainer_i_ungedr" data-content="assets/Lektionen/lektion_1.html"><span>Nach Lektionen</span></button></li>
-            <li><button class="btn_vokabeltrainer_i_ungedr" data-content="assets/Lektionen/lektion_2.html"><span>Nach Kategorien</span></button></li>
+            <li><button class="btn_vokabeltrainer_i_ungedr" data-content="assets/Lektionen/lektion_1.html"
+                                                            data-content-2="assets/Lektionen/js/script_lektion_1.js"><span>Nach Lektionen</span></button></li>
+            <li><button class="btn_vokabeltrainer_i_ungedr" data-content="assets/Lektionen/lektion_2.html"
+                                                            data-content-2="assets/Lektionen/js/script_lektion_1.js"><span>Nach Kategorien</span></button></li>
           </div>
         </ul>
       </li>
@@ -103,11 +108,16 @@
         </button>
         <ul class="sub-menu">
           <div>
-            <li><button class="btn_spiele_i_ungedr" data-content="assets/Spiele/landkreise_ee.html"><span>Landkreise</span></button></li>
-            <li><button class="btn_spiele_i_ungedr" data-content="assets/Spiele/staedte_ee.html"><span>Städte EE</span></button></li>
-            <li><button class="btn_spiele_i_ungedr" data-content="assets/Spiele/staedte.html"><span>Städte</span></button></li>
-            <li><button class="btn_spiele_i_ungedr" data-content="assets/Spiele/europa.html"><span>Europa</span></button></li>
-            <li><button class="btn_spiele_i_ungedr" data-content="assets/Spiele/welt.html"><span>Welt</span></button></li>
+            <li><button class="btn_spiele_i_ungedr" data-content="assets/Spiele/landkreise_ee.html"
+                                                    data-content-2="assets/Spiele/js/script_landkreise_ee.js"><span>Landkreise</span></button></li>
+            <li><button class="btn_spiele_i_ungedr" data-content="assets/Spiele/staedte_ee.html"
+                                                    data-content-2="assets/Spiele/js/script_staedte_ee.js"><span>Städte EE</span></button></li>
+            <li><button class="btn_spiele_i_ungedr" data-content="assets/Spiele/staedte.html"
+                                                    data-content-2="assets/Spiele/js/script_staedte.js"><span>Städte</span></button></li>
+            <li><button class="btn_spiele_i_ungedr" data-content="assets/Spiele/europa.html"
+                                                    data-content-2="assets/Spiele/js/script_europa.js"><span>Europa</span></button></li>
+            <li><button class="btn_spiele_i_ungedr" data-content="assets/Spiele/welt.html"
+                                                    data-content-2="assets/Spiele/js/script_welt.js"><span>Welt</span></button></li>
           </div>
         </ul>
       </li>
@@ -130,7 +140,6 @@
       <p>Dolor.</p>
     </div>
   </main>
-
 
 </body>
 </html>
