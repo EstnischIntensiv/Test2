@@ -1,34 +1,92 @@
-<script type="text/javascript" src="js/script_landkreise_ee.js" defer></script>
+<!-- <script type="text/javascript" src="js/script_landkreise_ee.js" defer></script> -->
+<!-- <script type="text/javascript" src="assets/Spiele/js/script_landkreise_ee.js" defer></script> -->
 <!-- <link rel="stylesheet" href="css/style_spiele.css"> -->
+
+<!-- <link rel="stylesheet" href="assets/Spiele/css/style_spiele.css">
+<script type="text/javascript" src="assets/Spiele/js/script_landkreise_ee.js" defer></script> -->
+
+
 <link rel="stylesheet" href="assets/Spiele/css/style_spiele.css">
+<!-- <script type="text/javascript" src="assets/Spiele/js/script_landkreise_ee.js" defer></script> -->
+<script type="text/javascript" src="js/script_landkreise_ee.js" defer></script>
 
 
-<div class="ueberschrift">
+
+<!-- <div class="ueberschrift">
   <h2>Landkreise EE</h2>
-</div>
-
-
+</div> -->
 
 <main id="mainInhalt">
-  <div class="container">
+  <div class="container_anfang">
     <h2>Hier kommt das Landkreise Spiel</h2>
-    <p>Einfach oder Schwer?</p>
-    <ul>
-      <button class="btn_landkreise_einfach">
-        <span>Einfach</span>
-      </button>
-      <button class="btn_landkreise_schwer">
-        <span>Schwer</span>
-      </button>
-    </ul>
-    <!-- <img src="/assets/Spiele/images/Estland_Landkreise_Staedte_alle.png"> -->
-    <img src="assets/Spiele/images/Estland_Landkreise_Staedte_alle.png">
-    <!-- <img src="/images/Estland_Landkreise_Staedte_alle.png"> -->
-    <!-- <img src="images/Estland_Landkreise_Staedte_alle.png"> -->
+      <!-- <p>Einfach oder Schwer?</p> -->
 
+
+    <ul class="schwierigkeitsauswahl">
+      <div class="container_btn">
+        <button id="btn_einfach">
+          <div class="btn_einfach_inhalt">
+            <span class="btn_einfach_text">EINFACH</span>
+
+            <div class="btn_reflektion_1"></div>
+            <div class="btn_reflektion_2"></div>
+          </div>
+        <div class="btn_schatten_einfach"></div>
+      </div>
+
+      <div class="container_btn">
+        <button id="btn_schwer">
+          <div class="btn_schwer_inhalt">
+            <span class="btn_einfach_text">SCHWER</span>
+
+            <div class="btn_reflektion_1"></div>
+            <div class="btn_reflektion_2"></div>
+          </div>
+        <div class="btn_schatten_schwer"></div>
+      </div>
+    </ul>
+
+    <div class="ee_bild">
+      <img src="assets/Spiele/images/Estland_Landkreise.png">
+    </div>
     <p>Einfach: Auswahl zwischen 4 verschiedenen Antwortmöglichkeiten</p>
     <p>Schwer: Keine Auswahl, nur Eingabe</p>
+  </div>
 
+
+
+  <!-- HIER BEGINNT DAS EINFACHE SPIEL -->
+  <div class="container_spiel_einfach hide">
+    Welcher Landkreis ist dies?
+    <!-- <img class="frage_bild" src="assets/Spiele/images/Landkreise_ohne_Namen/harju.png"> -->
+    <img class="frage_bild" src="">
+    <div class="container_richt_fal_z1">
+      <button class="btn_antwort_1"><span>Antwort 1</span></button>
+      <button class="btn_antwort_2"><span>Antwort 2</span></button>
+    </div>
+    <div class="container_richt_fal_z2">
+      <button class="btn_antwort_3"><span>Antwort 3</span></button>
+      <button class="btn_antwort_4"><span>Antwort 4</span></button>
+    </div>
+
+    <div class="container_loesung">
+      <button id="btn_weiter">Weiter</button>
+    </div>
+
+    <div class="ende hide">
+      Score: X, Weiter?
+    </div>
+
+  </div>
+
+
+
+
+
+
+  <!-- HIER BEGINNT DAS SCHWERE SPIEL -->
+  <div class="container_spiel_schwer hide">
+    Schweres Spiel
   </div>
 </main>
 
