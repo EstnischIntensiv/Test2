@@ -8,6 +8,26 @@
   --secondary-text-clr: #b0b3c1;
   --icon-farbe: white;
   --icon-text-farbe: white;
+
+  --text-farbe-schwarz: black;
+
+  --blau-1: #487db2;
+  --blau-2: #7aa7e1;
+  --gruen-1: #77B14E;
+  --gruen-2: #93D16B;
+  --rot-1: #C35A5A;
+  --rot-2: #e17a7a;
+
+  --reflection-color: hsla(48, 30%, 95%, .3);
+
+  --gradient-color-blau: linear-gradient(90deg,
+                       hsl(202, 100%, 50%) 0%,
+                       hsl(244, 100%, 54%));
+
+  --gradient-color-rot: linear-gradient(90deg,
+                       hsl(351, 84%, 71%) 0%,
+                       hsl(0, 76%, 42%));
+
 }
 
 *{
@@ -137,7 +157,7 @@ body{
 
 
 /* Hier steht alles zu Button 3 */
-#btn_1 {
+/* #btn_1 {
   background-color: var(--base-clr);
   border: none;
   border-radius: .5em;
@@ -160,10 +180,10 @@ body{
 }
 #btn_1:hover {
   background-color: var(--hover-clr);
-}
+} */
 
 /* Hier steht alles zu Button 4 */
-#btn_2 {
+/* #btn_2 {
   background-color: var(--base-clr);
   border: none;
   border-radius: .5em;
@@ -186,7 +206,7 @@ body{
 }
 #btn_2:hover {
   background-color: var(--hover-clr);
-}
+} */
 
 
 
@@ -195,37 +215,7 @@ body{
 
 
 /* Button nicht gedrückt (inaktiv) */
-.btn_ungedrueckt {
-  background-color: var(--base-clr);
-  border: none;
-  border-radius: .5em;
-
-  padding: 1.0em;
-  width: 100%;
-  display: flex;
-  align-items: center;
-
-  background-color: var(--base-clr);
-  cursor: pointer;
-}
-
-.btn_ungedrueckt .icon{
-  color: var(--icon-farbe);
-  margin-right: 20px;
-}
-.btn_ungedrueckt span{
-  color: var(--icon-farbe);
-  font-size: 18px;
-}
-.btn_ungedrueckt:hover {
-  background-color: var(--hover-clr);
-}
-.btn_ungedrueckt use{
-  fill: var(--icon-farbe);
-}
-
-
-/* Button gedrückt (aktiv) */
+.btn_ungedrueckt,
 .btn_gedrueckt {
   background-color: var(--base-clr);
   border: none;
@@ -238,6 +228,36 @@ body{
 
   cursor: pointer;
 }
+
+.btn_ungedrueckt .icon{
+  color: var(--icon-farbe);
+  margin-right: 20px;
+}
+.btn_ungedrueckt span{
+  color: var(--icon-farbe);
+  font-size: 18px;
+}
+.btn_ungedrueckt:hover,
+.btn_gedrueckt:hover {
+  background-color: var(--hover-clr);
+}
+.btn_ungedrueckt use{
+  fill: var(--icon-farbe);
+}
+
+/* Button gedrückt (aktiv) */
+/* .btn_gedrueckt {
+  background-color: var(--base-clr);
+  border: none;
+  border-radius: .5em;
+
+  padding: 1.0em;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  cursor: pointer;
+} */
 .btn_gedrueckt .icon{
   color: var(--accent-clr);
   margin-right: 20px;
@@ -246,15 +266,19 @@ body{
   color: var(--accent-clr);
   font-size: 18px;
 }
-.btn_gedrueckt:hover {
+/* .btn_gedrueckt:hover {
   background-color: var(--hover-clr);
-}
+} */
 .btn_gedrueckt use{
   fill: var(--accent-clr);
 }
 
 
-/* Für Lektionen mit Untermenü */
+
+
+
+/* Für Lektionen mit Untermenü -> btn_home funktioniert noch icht */
+.btn_home,
 .btn_lektionen,
 .btn_vokabeltrainer,
 .btn_spiele {
@@ -274,11 +298,14 @@ body{
   border: none;
   cursor: pointer;
 }
+.btn_home .icon,
 .btn_lektionen .icon,
 .btn_vokabeltrainer .icon,
 .btn_spiele .icon {
+  color: white;
   margin-right: 10px;
 }
+.btn_home span,
 .btn_lektionen span,
 .btn_vokabeltrainer span, 
 .btn_spiele span {
@@ -286,16 +313,19 @@ body{
   font-size: 18px;
   color: white;
 }
+.btn_home:hover,
 .btn_lektionen:hover,
 .btn_vokabeltrainer:hover,
 .btn_spiele:hover {
   background-color: var(--hover-clr);
 }
+.btn_home svg,
 .btn_lektionen svg,
 .btn_vokabeltrainer svg
 .btn_spiele svg{
   transition: 200ms ease;
 }
+.btn_home use,
 .btn_lektionen use,
 .btn_vokabeltrainer use
 .btn_spiele use {
@@ -304,7 +334,7 @@ body{
 
 
 
-
+.btn_home_gedr,
 .btn_lektionen_gedr,
 .btn_vokabeltrainer_gedr,
 .btn_spiele_gedr {
@@ -319,15 +349,18 @@ body{
   width: 100%;
   text-align: left;
   /* background-color: var(--base-clr); */
+  color: red;
   background: none;
   border: none;
   cursor: pointer;
 }
+.btn_home_gedr .icon,
 .btn_lektionen_gedr .icon,
 .btn_vokabeltrainer_gedr .icon,
 .btn_spiele_gedr .icon {
   margin-right: 10px;
 }
+.btn_home_gedr span,
 .btn_lektionen_gedr span,
 .btn_vokabeltrainer_gedr span,
 .btn_spiele_gedr span {
@@ -335,16 +368,19 @@ body{
   font-size: 18px;
   color: var(--accent-clr);
 }
+.btn_home_gedr:hover,
 .btn_lektionen_gedr:hover,
 .btn_vokabeltrainer_gedr:hover,
 .btn_spiele_gedr:hover {
   background-color: var(--hover-clr);
 }
+.btn_home_gedr svg,
 .btn_lektionen_gedr svg,
 .btn_vokabeltrainer_gedr svg,
 .btn_spiele_gedr svg {
   transition: 200ms ease;
 }
+.btn_home_gedr use,
 .btn_lektionen_gedr use,
 .btn_vokabeltrainer_gedr use,
 .btn_spiele_gedr use {
@@ -479,7 +515,7 @@ body{
 
 main{
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   padding: min(30px, 7%);
@@ -492,10 +528,12 @@ main p{
 .container{
   border: 1px solid var(--line-clr);
   border-radius: 1em;
-  margin-bottom: 20px;
-  padding: min(2em, 15%);
+  
+  margin-top: 1%;
+  /* margin-bottom: 20px; */
+  padding: 5%;
 
-  h2, p { margin-top: 1em }
+  /* h2, p { margin-top: 1em } */
 }
 
 .ueberschrift {
@@ -505,15 +543,11 @@ main p{
   flex-direction: column;
   background-color: var(--base-clr);
 
-  
-
   /* border: 1px solid var(--line-clr); */
   border-radius: 10px;
   width: fit-content;
   width: 190px;
   height: 30px;
-
-
   position: relative;
 
   /* text-decoration: underline; */
@@ -526,7 +560,8 @@ main p{
   initial-value: 0deg;
   inherits: false;
 }
-.ueberschrift::after, .ueberschrift::before {
+.ueberschrift::after,
+.ueberschrift::before {
   --angle: 0deg;
   content: "";
   position: absolute;
@@ -540,9 +575,9 @@ main p{
   left: 50%;
   translate: -50% -50%;
 
-  /* top: 100%;
+  top: 100%;
   left: 50%;
-  translate: -50% -50%; */
+  translate: -50% -50%;
   z-index: -1;
   padding: 2px;
   animation: 6s spin linear infinite;
