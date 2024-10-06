@@ -33,65 +33,60 @@ function closeAllSubMenus(){
 
 
 
+// function buttonklicken(buttonId) {
+//   const buttons = document.querySelectorAll('.button-class');
+
+//   // console.log("buttons:", buttons);
+//   // console.log("buttonId =", buttonId)
+
+//   buttons.forEach(button => {
+//     const icon = button.querySelector('.icon');
+//     const span = button.querySelector('span');
+
+//     const accentColor = getComputedStyle(document.documentElement).getPropertyValue("--accent-clr");
+
+//     // Setze alle Buttons auf weiß
+//     btn_icon = button.querySelector(".icon");
+//     btn_span = button.querySelector("span");
+//     if (btn_icon) {
+//       btn_icon.style.color = "white";
+//       btn_span.style.color = "white";
+//     }
+//     // Setzt genau 1 Button auf andere Farbe
+//     if (buttonId === "btn_1") {
+//       const buttonElement = document.getElementById(buttonId);
+//       if (buttonElement) {
+//         const iconElement = buttonElement.querySelector(".icon");
+//         const spanElement = buttonElement.querySelector("span");
+//         if (iconElement) {
+//           iconElement.style.color = "red";
+//           spanElement.style.color = "red";
+//         }
+//       }
+//     } else if (buttonId === "btn_2") {
+//       const buttonElement = document.getElementById(buttonId);
+//       if (buttonElement) {
+//         const iconElement = buttonElement.querySelector(".icon");
+//         const spanElement = buttonElement.querySelector("span");
+//         if (iconElement) {
+//           iconElement.style.color = "red";
+//           spanElement.style.color = "red";
+//         }
+//       }
+//     }
 
 
+//   })
+// }
+// // Event Listener für Button 3
+// document.getElementById('btn_1').addEventListener('click', function() {
+//   buttonklicken('btn_1');
+// });
 
-
-
-function buttonklicken(buttonId) {
-  const buttons = document.querySelectorAll('.button-class');
-
-  // console.log("buttons:", buttons);
-  // console.log("buttonId =", buttonId)
-
-  buttons.forEach(button => {
-    const icon = button.querySelector('.icon');
-    const span = button.querySelector('span');
-
-    const accentColor = getComputedStyle(document.documentElement).getPropertyValue("--accent-clr");
-
-    // Setze alle Buttons auf weiß
-    btn_icon = button.querySelector(".icon");
-    btn_span = button.querySelector("span");
-    if (btn_icon) {
-      btn_icon.style.color = "white";
-      btn_span.style.color = "white";
-    }
-    // Setzt genau 1 Button auf andere Farbe
-    if (buttonId === "btn_1") {
-      const buttonElement = document.getElementById(buttonId);
-      if (buttonElement) {
-        const iconElement = buttonElement.querySelector(".icon");
-        const spanElement = buttonElement.querySelector("span");
-        if (iconElement) {
-          iconElement.style.color = "red";
-          spanElement.style.color = "red";
-        }
-      }
-    } else if (buttonId === "btn_2") {
-      const buttonElement = document.getElementById(buttonId);
-      if (buttonElement) {
-        const iconElement = buttonElement.querySelector(".icon");
-        const spanElement = buttonElement.querySelector("span");
-        if (iconElement) {
-          iconElement.style.color = "red";
-          spanElement.style.color = "red";
-        }
-      }
-    }
-
-
-  })
-}
-// Event Listener für Button 3
-document.getElementById('btn_1').addEventListener('click', function() {
-  buttonklicken('btn_1');
-});
-
-// Event Listener für Button 4
-document.getElementById('btn_2').addEventListener('click', function() {
-  buttonklicken('btn_2');
-});
+// // Event Listener für Button 4
+// document.getElementById('btn_2').addEventListener('click', function() {
+//   buttonklicken('btn_2');
+// });
 
 
 
@@ -112,6 +107,7 @@ document.getElementById('btn_2').addEventListener('click', function() {
 
 // Zugriff auf alle Buttons für Klicken in der Seitenleiste
 const buttons = document.querySelectorAll(".btn_ungedrueckt, .btn_gedrueckt,\
+  .btn_home                     .btn_home_gedr,\
   .btn_lektionen,               .btn_lektionen_gedr,\
   .btn_lek_i_ungedr,            .btn_lek_i_gedr,\
   .btn_vokabeltrainer,          .btn_vokabeltrainer_gedr,\
@@ -247,31 +243,86 @@ function buttonklicken_klasse_2(button) {
 
 
 
+function ladeSkript(url) {
+  var head = document.getElementsByTagName("head")[0];
+  var skript = document.createElement("script");
+  skript.type = "text/javascript";
+  skript.src = url;
+  head.appendChild(skript);
+}
 
 
 
+var letztes_skript = null;
 // Füge einen Event-Listener für alle Buttons hinzu, um andere Datei anzeigen zu lassen
 document.querySelectorAll('.btn_ungedrueckt, .btn_lek_i_ungedr,\
                            .btn_vokabeltrainer_i_ungedr, .btn_vokabeltrainer_i_gedr,\
                            .btn_spiele_i_ungedr, .btn_spiele_i_gedr').forEach(button => {
   button.addEventListener('click', function() {
-      // Lese die URL aus dem data-content-Attribut des geklickten Buttons
-      var contentUrl = this.getAttribute('data-content');
+    // Lese die URL aus dem data-content-Attribut des geklickten Buttons
+    var contentUrl_1 = this.getAttribute('data-content');
+    var contentUrl_2 = this.getAttribute('data-content-2');
 
-      // Lade die HTML-Datei und ersetze den Inhalt des <main>-Elements
-      fetch(contentUrl)
-          .then(response => response.text())
-          .then(data => {
-              // Den mainContent-Bereich mit dem geladenen HTML ersetzen
-              document.getElementById('mainInhalt').innerHTML = data;
-          })
-          .catch(error => {
-              console.error('Fehler beim Laden der Lektion:', error);
-          });
+    // Lade die HTML-Datei und ersetze den Inhalt des <main>-Elements
+    fetch(contentUrl_1)
+      .then(response => response.text())
+      .then(data => {
+        // Den mainContent-Bereich mit dem geladenen HTML ersetzen
+        // console.log("contentUrl_1: ", contentUrl_1)
+        document.getElementById('mainInhalt').innerHTML = data;
+
+        ladeSkript(contentUrl_2);
+
+        // Skript dynamisch hinzufügen
+        // const script = document.createElement('script');
+        // script.src = 'assets/Spiele/js/script_landkreise_ee.js'; // Den Pfad zu deinem JS anpassen
+        // script.defer = true; // Optional, um sicherzustellen, dass das Skript nach dem Laden ausgeführt wird
+        // document.body.appendChild(script);
+
+        // alle_button = document.querySelectorAll("button")
+        // alle_button.forEach(btn => {
+        //   console.log(btn.getElementsByClassName)
+        // })
+
+        // const script = document.createElement("script");
+        // script.src = contentUrl_2;
+        // script.defer = true;
+        // console.log("neues script: ", script.src)
+        // if (letztes_skript !== null) { console.log("letztes_skript: ", letztes_skript.src) }
+
+
+        // if (letztes_skript === null) {
+        //   console.log("IST NULL")
+        //   document.body.appendChild(script);
+        //   letztes_skript = script;
+        // }
+        // else if (letztes_skript.src !== script.src) {
+        //   console.log("NICHT GLEICH")
+        //   document.body.appendChild(script);
+        //   letztes_skript = script;
+        // }
+        // else if (letztes_skript !== null && letztes_skript.src === script.src) {
+        //   console.log("SIND GLEICH")
+        //   script.forEach(btn => {
+        //     btn.remove();
+        //   })
+        // }
+
+      })
+      .catch(error => {
+          console.error('Fehler beim Laden der Lektion:', error);
+      });
   });
 });
 
 
 
+// else {
+//   console.log("SIND GLEICH")
+//   script.forEach(btn => {
+//     btn.remove();
+//   })
+// }
 
+// const btn_loesch = document.querySelectorAll('.btn_spiel_einfach');
 
