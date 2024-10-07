@@ -181,7 +181,7 @@ function pruefe_antwort(e) {
   // console.log("aktueller_landkreis: ", aktueller_landkreis);
   // console.log("e.target 2: ", e.target.outerText);
 
-  if (e.currentTarget.outerText === aktueller_landkreis[1]) {
+  if (e.currentTarget.outerText.trim() === aktueller_landkreis[1].trim()) {
     console.log("RICHTIG!");
     e.currentTarget.setAttribute("id", "btn_antwort_richtig");
     container_spiel_einfach.setAttribute("id", "container_spiel_einfach_richtig");
