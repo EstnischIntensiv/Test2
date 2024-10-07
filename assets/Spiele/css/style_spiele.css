@@ -19,12 +19,18 @@
   align-items: center;
   flex-direction: column;
 
-  /* width: 80%; */
   img {
-    max-width: 80%;
+    max-width: 80%;   /* NICHT ÄNDERN */
     border-radius: 2%;
   }
 }
+/* .container_spiel_einfach,
+.container_spiel_schwer {
+  img {
+    max-width: 70%;
+  }
+} */
+
 #container_spiel_einfach_richtig {
   border: 2px solid var(--gruen-2);
 }
@@ -40,12 +46,13 @@
 
 
 
-
+/* Bild mit Hintergrund */
 .ee_bild {
   content: "";
   display: flex;
   justify-content: center;
   margin-bottom: 10%;
+  max-width: 100%;
 
   /* border: 10px solid red; */
   position: relative;
@@ -75,8 +82,9 @@
   opacity: 0.5;
 }
 
-
-.frage_bild {
+.frage_bild,
+.frage_bild_schwer {
+  width: 70%;
   margin-bottom: 2%;
 }
 
@@ -106,7 +114,7 @@
 .btn_antwort_2,
 .btn_antwort_3,
 .btn_antwort_4,
-#btn_weiter {
+#btn_weiter_einfach {
   color: var(--line-clr);
   border-radius: .5em;
   padding: 1.0em 4.0em;
@@ -143,7 +151,7 @@
 .btn_antwort_2 span,
 .btn_antwort_3 span,
 .btn_antwort_4 span,
-#btn_weiter span {
+#btn_weiter_einfach span {
   width: 100px;
   font-size: 20px;
   font-weight: bold;
@@ -169,7 +177,7 @@
 }
 
 
-#btn_weiter {
+#btn_weiter_einfach {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -177,7 +185,7 @@
   background-color: var(--text-clr);
   font-size: 16px;
 }
-#btn_weiter:hover {
+#btn_weiter_einfach:hover {
   background-color: var(--secondary-text-clr);
 }
 
