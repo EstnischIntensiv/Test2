@@ -74,6 +74,10 @@ antwort_1.addEventListener("click", (e) => pruefe_antwort(e));
 antwort_2.addEventListener("click", (e) => pruefe_antwort(e));
 antwort_3.addEventListener("click", (e) => pruefe_antwort(e));
 antwort_4.addEventListener("click", (e) => pruefe_antwort(e));
+antwort_1.addEventListener("touchstart", (e) => pruefe_antwort(e));
+antwort_2.addEventListener("touchstart", (e) => pruefe_antwort(e));
+antwort_3.addEventListener("touchstart", (e) => pruefe_antwort(e));
+antwort_4.addEventListener("touchstart", (e) => pruefe_antwort(e));
 
 
 
