@@ -11,8 +11,12 @@
 
   --text-farbe-schwarz: black;
 
+  --schwarz-blau: #111b26;
+  --weiss-blau: #b9c9de;
+
   --blau-1: #487db2;
   --blau-2: #7aa7e1;
+  --blau-3: #3a76b1;
   --gruen-1: #77B14E;
   --gruen-2: #93D16B;
   --rot-1: #C35A5A;
@@ -24,9 +28,16 @@
                        hsl(202, 100%, 50%) 0%,
                        hsl(244, 100%, 54%));
 
+  --gradient-color-blau: linear-gradient(90deg,
+                         var(--blau-2) 0%,
+                         var(--blau-1));
+
   --gradient-color-rot: linear-gradient(90deg,
-                       hsl(351, 84%, 71%) 0%,
-                       hsl(0, 76%, 42%));
+                         var(--rot-2) 0%,
+                         var(--rot-1));
+
+
+  --progress_breite: 0;
 
 }
 
@@ -259,18 +270,18 @@ body{
   cursor: pointer;
 } */
 .btn_gedrueckt .icon{
-  color: var(--accent-clr);
+  color: var(--blau-2);
   margin-right: 20px;
 }
 .btn_gedrueckt span{
-  color: var(--accent-clr);
+  color: var(--blau-2);
   font-size: 18px;
 }
 /* .btn_gedrueckt:hover {
   background-color: var(--hover-clr);
 } */
 .btn_gedrueckt use{
-  fill: var(--accent-clr);
+  fill: var(--blau-2);
 }
 
 
@@ -349,7 +360,7 @@ body{
   width: 100%;
   text-align: left;
   /* background-color: var(--base-clr); */
-  color: red;
+  /* color: red; */
   background: none;
   border: none;
   cursor: pointer;
@@ -366,7 +377,7 @@ body{
 .btn_spiele_gedr span {
   flex-grow: 1;
   font-size: 18px;
-  color: var(--accent-clr);
+  color: var(--blau-2);
 }
 .btn_home_gedr:hover,
 .btn_lektionen_gedr:hover,
@@ -384,7 +395,7 @@ body{
 .btn_lektionen_gedr use,
 .btn_vokabeltrainer_gedr use,
 .btn_spiele_gedr use {
-  fill: var(--accent-clr);
+  fill: var(--blau-2);
 }
 
 
@@ -436,7 +447,7 @@ body{
 .btn_lek_i_gedr span,
 .btn_vokabeltrainer_i_gedr span,
 .btn_spiele_i_gedr span {
-  color: var(--accent-clr);
+  color: var(--blau-2);
   font-size: 16px;
   margin-left: 18px;
 }
@@ -448,7 +459,7 @@ body{
 .btn_lek_i_gedr use,
 .btn_vokabeltrainer_i_gedr use,
 .btn_spiele_i_gedr use{
-  fill: var(--accent-clr);
+  fill: var(--blau-2);
 }
 
 
