@@ -210,6 +210,10 @@ function pruefe_antwort(e) {
     container_spiel_einfach.setAttribute("id", "container_spiel_einfach_richtig");
     horizontale_linie.setAttribute("id", "horiz_linie_richtig");
 
+    const neuerPfad_mitName = pfad_bilder_mitName + aktueller_landkreis[0] + pfad_png;
+    console.log("neuerPfad_mitName 1 =", neuerPfad_mitName);
+    frage_bild.src = neuerPfad_mitName;
+
     score++;
   }
   else {
@@ -217,6 +221,10 @@ function pruefe_antwort(e) {
     e.currentTarget.setAttribute("id", "btn_antwort_falsch");
     container_spiel_einfach.setAttribute("id", "container_spiel_einfach_falsch");
     horizontale_linie.setAttribute("id", "horiz_linie_falsch");
+
+    const neuerPfad_mitName = pfad_bilder_mitName + aktueller_landkreis[0] + pfad_png;
+    console.log("neuerPfad_mitName 2 =", neuerPfad_mitName);
+    frage_bild.src = neuerPfad_mitName;
   }
 
   antwort_1.disabled = true;
@@ -229,15 +237,13 @@ function pruefe_antwort(e) {
   antwort_4.style.pointerEvents = "none";
 
   const neuerPfad_mitName = pfad_bilder_mitName + aktueller_landkreis[0] + pfad_png;
+  console.log("neuerPfad_mitName 3 =", neuerPfad_mitName);
   frage_bild.src = neuerPfad_mitName;
 
 }
 
 // TODO
-// - Problem: Wenn geshuffelt wird, kommen manche Landkreise doppelt vor
 // - Richtige Antwort anzeigen, bei falscher Antwort -> Bild ändern mit Lösung
-// - Weiter Button verschönern
-// - Evtl Leiste unten erstellen, die Richtig oder Falsch sagt -> spätestens für Schweres Spiel nötig
 // - Ende erstellen
 
 
