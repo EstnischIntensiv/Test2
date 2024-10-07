@@ -16,13 +16,13 @@
 
 // Variablen für Landkreise
 var landkreisNamen_einfach = [
-  ["harju", "Harjumaa"],
+  ["harju", "Harju"],
   ["hiiumaa", "Hiiumaa"],
-  ["ida-viru", "Ida-Virumaa"],
-  ["järva", "Järvamaa"],
+  ["ida-viru", "Ida-Viru"],
+  ["järva", "Järva"],
   ["jõgeva", "Jõgeva"],
-  ["lääne", "Läänemaa"],
-  ["lääne-viru", "Lääne-Virumaa"],
+  ["lääne", "Lääne"],
+  ["lääne-viru", "Lääne-Viru"],
   ["pärnu", "Pärnu"],
   ["põlva", "Põlva"],
   ["rapla", "Rapla"],
@@ -33,13 +33,36 @@ var landkreisNamen_einfach = [
   ["võru", "Võru"]
 ];
 
+var landkreisNamen_schwer = [
+  ["harju", "harjumaa", "harju maakond"],
+  ["hiiumaa", "hiiu", "hiiu maakond"],
+  ["ida-viru", "ida-virumaa", "ida viru", "ida virumaa", "idaviru", "idavirumaa", "ida-viru maakond", "ida viru maakond", "idaviru maakond"],
+  ["järva", "järvamaa", "järva maakond"],
+  ["jõgeva", "jõgevamaa", "jõgeva maakond"],
+  ["lääne", "läänemaa", "lääne maakond"],
+  ["lääne-viru", "lääne-virumaa", "lääne viru", "lääne virumaa", "lääneviru", "läänevirumaa", "lääne-viru maakond", "lääne viru maakond", "lääneviru maakond"],
+  ["pärnu", "pärnumaa", "pärnu maakond"],
+  ["põlva", "põlvamaa", "põlva maakond"],
+  ["rapla", "raplamaa", "rapla maakond"],
+  ["saaremaa", "saare maakond", "saare"],
+  ["tartu", "tartumaa", "tartu maakond"],
+  ["valga", "valgamaa", "valga maakond"],
+  ["viljandi", "viljandimaa", "viljandi maakond"],
+  ["võru", "võrumaa", "võru maakond"]
+];
+
+
 // Container für Anfang, Spiele und Bild
 var container_anfang = document.querySelector(".container_anfang");
 var container_spiel_einfach = document.querySelector(".container_spiel_einfach");
 var container_spiel_schwer = document.querySelector(".container_spiel_schwer");
 var container_ende = document.querySelector(".ende")
+var horizontale_linie = document.querySelector(".horiz_linie");
+var progress = document.querySelector(".progress");
 
-var pfad_bilder = "assets/Spiele/images/Landkreise_ohne_Namen/";
+var pfad_bilder_ohneName = "assets/Spiele/images/Landkreise_ohne_Namen/";
+var pfad_bilder_mitName = "assets/Spiele/images/Landkreise_mit_Namen/";
+
 var pfad_png = ".png";
 var frage_bild = document.querySelector(".frage_bild");
 var aktueller_landkreis;
@@ -66,6 +89,7 @@ console.log("btn_landkr_weiter: ", btn_landkr_weiter);
 // Bildindex, Score
 var frage_idx = 0;
 var score = 0;
+var progress_breite = 0;
 
 // EventListener
 btn_landkrspiel_einfach.addEventListener("click", starte_landkr_spiel);
@@ -74,10 +98,6 @@ antwort_1.addEventListener("click", (e) => pruefe_antwort(e));
 antwort_2.addEventListener("click", (e) => pruefe_antwort(e));
 antwort_3.addEventListener("click", (e) => pruefe_antwort(e));
 antwort_4.addEventListener("click", (e) => pruefe_antwort(e));
-//antwort_1.addEventListener("touchstart", (e) => pruefe_antwort(e));
-//antwort_2.addEventListener("touchstart", (e) => pruefe_antwort(e));
-//antwort_3.addEventListener("touchstart", (e) => pruefe_antwort(e));
-//antwort_4.addEventListener("touchstart", (e) => pruefe_antwort(e));
 
 
 
@@ -90,7 +110,15 @@ function starte_landkr_spiel() {
 
   console.log("btn_landkrspiel_einfach 1: ", btn_landkrspiel_einfach);
   console.log("btn_landkrspiel_schwer 1: ", btn_landkrspiel_schwer);
-  console.log("btn_landkr_weiter 1: ", btn_landkr_weiter);
+  // console.log("btn_landkr_weiter 1: ", btn_landkr_weiter);
+
+  // Zufällige Liste
+  zuf_liste = Array.from({ length: 15 }, (_, i) => i);
+  for (let i = zuf_liste.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [zuf_liste[i], zuf_liste[j]] = [zuf_liste[j], zuf_liste[i]]; // Tausche Elemente
+  }
+  shuffledLandkreise = zuf_liste.map(index => landkreisNamen_einfach[index]);
 
   weiter();
 }
@@ -104,6 +132,8 @@ function weiter() {
     return;
   }
 
+  console.log("aktueller_landkreis: ", aktueller_landkreis);
+
   // Entferne IDs, also Grün/Rot
   antwort_1.removeAttribute("id");
   antwort_2.removeAttribute("id");
@@ -111,6 +141,8 @@ function weiter() {
   antwort_4.removeAttribute("id");
   container_spiel_einfach.removeAttribute("id", "container_spiel_einfach_richtig");
   container_spiel_einfach.removeAttribute("id", "container_spiel_einfach_falsch");
+  horizontale_linie.removeAttribute("id", "horiz_linie_richtig");
+  horizontale_linie.removeAttribute("id", "horiz_linie_falsch");
   antwort_1.disabled = false;
   antwort_2.disabled = false;
   antwort_3.disabled = false;
@@ -121,18 +153,8 @@ function weiter() {
   antwort_4.style.pointerEvents = "auto";
 
 
-  // Zufällige Liste
-  zuf_liste = Array.from({ length: 15 }, (_, i) => i);
-  // for (let i = zuf_liste.length - 1; i > 0; i--) {
-  //   const j = Math.floor(Math.random() * (i + 1));
-  //   [zuf_liste[i], zuf_liste[j]] = [zuf_liste[j], zuf_liste[i]]; // Tausche Elemente
-  // }
-  shuffledLandkreise = zuf_liste.map(index => landkreisNamen_einfach[index]);
-
-  console.log("shuffledLandkreise: ", shuffledLandkreise);
-
   aktueller_landkreis = shuffledLandkreise[zuf_liste[frage_idx]];
-  const neuerPfad = pfad_bilder + aktueller_landkreis[0] + pfad_png;
+  const neuerPfad = pfad_bilder_ohneName + aktueller_landkreis[0] + pfad_png;
   frage_bild.src = neuerPfad;
   console.log("aktueller_landkreis =", aktueller_landkreis);
 
@@ -140,14 +162,13 @@ function weiter() {
   let restl_landkreise = shuffledLandkreise.filter(item => item !== aktueller_landkreis);
   restl_landkreise = restl_landkreise.slice(0,3);
   restl_landkreise.push(aktueller_landkreis);
-  console.log("restl_landkreise 1 =", restl_landkreise);
+  // console.log("restl_landkreise 1 =", restl_landkreise);
 
   // Shuffle 4 Antwortmöglichkeiten
   for (let i = restl_landkreise.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [restl_landkreise[i], restl_landkreise[j]] = [restl_landkreise[j], restl_landkreise[i]]; // Tausche Elemente
   }
-  console.log("restl_landkreise 2 =", restl_landkreise);
 
   // Antwortmöglichkeiten anzeigen auf Buttons
   antwort_1.querySelector("span").textContent = restl_landkreise[0][1];
@@ -157,24 +178,26 @@ function weiter() {
 
   // Finde richtige Antwort
   antworten.forEach( (antw,i) => {
-    console.log("A", i, ": ", antw.querySelector("span").textContent);
     if (antw.querySelector("span").textContent === aktueller_landkreis[1]) {
       antwort_richtig = antw;
       antwort_richtig_idx = i;
     }
   })
-  console.log("Richtiges Index =", antwort_richtig_idx);
-
-
+  // console.log("Richtiges Index =", antwort_richtig_idx);
 
 
 
   frage_idx++;
+  progress_breite = progress_breite + frage_idx;
+  setInterval(() => {
+    const computedStyle = getComputedStyle(progress);
+    // const breite = parseFloat(computedStyle.getPropertyValue("--progress_breite")) || 0
+    progress.style.setProperty("--progress_breite", progress_breite)
+  }, 5)
 }
 
 
 function pruefe_antwort(e) {
-  //e.preventDefault();
   // console.log("pruefe_antwort");
   // console.log("e: ", e);
 
@@ -185,6 +208,7 @@ function pruefe_antwort(e) {
     console.log("RICHTIG!");
     e.currentTarget.setAttribute("id", "btn_antwort_richtig");
     container_spiel_einfach.setAttribute("id", "container_spiel_einfach_richtig");
+    horizontale_linie.setAttribute("id", "horiz_linie_richtig");
 
     score++;
   }
@@ -192,6 +216,7 @@ function pruefe_antwort(e) {
     console.log("FALSCH!");
     e.currentTarget.setAttribute("id", "btn_antwort_falsch");
     container_spiel_einfach.setAttribute("id", "container_spiel_einfach_falsch");
+    horizontale_linie.setAttribute("id", "horiz_linie_falsch");
   }
 
   antwort_1.disabled = true;
@@ -203,11 +228,14 @@ function pruefe_antwort(e) {
   antwort_3.style.pointerEvents = "none";
   antwort_4.style.pointerEvents = "none";
 
+  const neuerPfad_mitName = pfad_bilder_mitName + aktueller_landkreis[0] + pfad_png;
+  frage_bild.src = neuerPfad_mitName;
+
 }
 
 // TODO
 // - Problem: Wenn geshuffelt wird, kommen manche Landkreise doppelt vor
-// - Richtige Antwort anzeigen, bei falscher Antwort
+// - Richtige Antwort anzeigen, bei falscher Antwort -> Bild ändern mit Lösung
 // - Weiter Button verschönern
 // - Evtl Leiste unten erstellen, die Richtig oder Falsch sagt -> spätestens für Schweres Spiel nötig
 // - Ende erstellen
