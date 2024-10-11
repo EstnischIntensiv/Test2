@@ -1,9 +1,22 @@
+/*
 // TODO
-// - Richtige Antwort anzeigen, bei falscher Antwort -> Bild ändern mit Lösung
-// - Ende erstellen
-// - Bilderrahmen ist auf Handy nicht passend -> alternatives Video ansehen
-// - Größe des gesamten Spieles ist im Web zu groß -> height, width, font-size, ... prüfen
+- Allgemein
+  - Ende erstellen mit Score
+  - Bilderrahmen ist auf Handy nicht passend -> alternatives Video ansehen
+  - Größe des gesamten Spieles ist im Web zu groß -> height, width, font-size, ... prüfen
+  - Schwierigkeitsauswahl-Buttons passen noch nicht so schön zum restlichen Style
+  - Entweder border für Richtig/Falsch dicker oder
+      Fragebild mit blauer Farbe und Richtig/Falsch in Grün/Rot anzeigen -> dh neue Bilder GIMP
+  
 
+- Leicht
+  - Einfach -> Leicht (abändern)
+  - Ende mit Score schöner -> Abstände leicht vergrößern (nach oben und unten)
+  - Bei Falscher Antwort soll die richtige Antwort grün leuchten
+
+- Schwer:
+  - Super/Falsch ausgeben bei entspr. Antwort
+*/
 
 
 
@@ -13,39 +26,39 @@
 
 // Variablen für Landkreise
 var landkreisNamen_einfach = [
-  ["harju", "Harju"],
-  ["hiiumaa", "Hiiumaa"],
-  ["ida-viru", "Ida-Viru"],
-  ["järva", "Järva"],
-  ["jõgeva", "Jõgeva"],
-  ["lääne", "Lääne"],
+  ["harju",      "Harju"],
+  ["hiiumaa",    "Hiiumaa"],
+  ["ida-viru",   "Ida-Viru"],
+  ["järva",      "Järva"],
+  ["jõgeva",     "Jõgeva"],
+  ["lääne",      "Lääne"],
   ["lääne-viru", "Lääne-Viru"],
-  ["pärnu", "Pärnu"],
-  ["põlva", "Põlva"],
-  ["rapla", "Rapla"],
-  ["saaremaa", "Saaremaa"],
-  ["tartu", "Tartu"],
-  ["valga", "Valga"],
-  ["viljandi", "Viljandi"],
-  ["võru", "Võru"]
+  ["pärnu",      "Pärnu"],
+  ["põlva",      "Põlva"],
+  ["rapla",      "Rapla"],
+  ["saaremaa",   "Saaremaa"],
+  ["tartu",      "Tartu"],
+  ["valga",      "Valga"],
+  ["viljandi",   "Viljandi"],
+  ["võru",       "Võru"]
 ];
 
 var landkreisNamen_schwer = [
-  ["harju", "harjumaa", "harju maakond"],
-  ["hiiumaa", "hiiu", "hiiu maakond"],
-  ["ida-viru", "ida-virumaa", "ida viru", "ida virumaa", "idaviru", "idavirumaa", "ida-viru maakond", "ida viru maakond", "idaviru maakond"],
-  ["järva", "järvamaa", "järva maakond"],
-  ["jõgeva", "jõgevamaa", "jõgeva maakond"],
-  ["lääne", "läänemaa", "lääne maakond"],
-  ["lääne-viru", "lääne-virumaa", "lääne viru", "lääne virumaa", "lääneviru", "läänevirumaa", "lääne-viru maakond", "lääne viru maakond", "lääneviru maakond"],
-  ["pärnu", "pärnumaa", "pärnu maakond"],
-  ["põlva", "põlvamaa", "põlva maakond"],
-  ["rapla", "raplamaa", "rapla maakond"],
-  ["saaremaa", "saare maakond", "saare"],
-  ["tartu", "tartumaa", "tartu maakond"],
-  ["valga", "valgamaa", "valga maakond"],
-  ["viljandi", "viljandimaa", "viljandi maakond"],
-  ["võru", "võrumaa", "võru maakond"]
+  ["harju",     "Harju",      "harjumaa",      "harju maakond"],
+  ["hiiumaa",   "Hiiumaa",    "hiiu",          "hiiu maakond"],
+  ["ida-viru",  "Ida-Viru",   "ida-virumaa",   "ida viru", "ida virumaa", "idaviru", "idavirumaa", "ida-viru maakond", "ida viru maakond", "idaviru maakond"],
+  ["järva",     "Järva",      "järvamaa",      "järva maakond"],
+  ["jõgeva",    "Jõgeva",     "jõgevamaa",     "jõgeva maakond"],
+  ["lääne",     "Lääne",      "läänemaa",      "lääne maakond"],
+  ["lääne-viru","Lääne-Viru", "lääne-virumaa", "lääne viru", "lääne virumaa", "lääneviru", "läänevirumaa", "lääne-viru maakond", "lääne viru maakond", "lääneviru maakond"],
+  ["pärnu",     "Pärnu",      "pärnumaa",      "pärnu maakond"],
+  ["põlva",     "Põlva",      "põlvamaa",      "põlva maakond"],
+  ["rapla",     "Rapla",      "raplamaa",      "rapla maakond"],
+  ["saaremaa",  "Saaremaa",   "saare maakond", "saare"],
+  ["tartu",     "Tartu",      "tartumaa",      "tartu maakond"],
+  ["valga",     "Valga",      "valgamaa",      "valga maakond"],
+  ["viljandi",  "Viljandi",   "viljandimaa",   "viljandi maakond"],
+  ["võru",      "Võru",       "võrumaa",       "võru maakond"]
 ];
 
 
@@ -55,7 +68,14 @@ var container_spiel_einfach = document.querySelector(".container_spiel_einfach")
 var container_spiel_schwer = document.querySelector(".container_spiel_schwer");
 var container_ende = document.querySelector(".ende")
 var horizontale_linie = document.querySelector(".horiz_linie");
-var progress = document.querySelector(".progress");
+var horizontale_linie_schwer = document.querySelector(".horiz_linie_schwer");
+// var progress = document.querySelector(".progress");
+// var progress_schwer = document.querySelector(".progress_schwer_2");
+
+var progress_leicht = document.querySelector(".progress_leicht");
+var progress_fuellen_leicht = document.querySelector(".progress_fuellen_leicht");
+var progress_text_leicht = document.querySelector(".progress_text_leicht");
+
 
 var pfad_bilder_ohneName = "assets/Spiele/images/Landkreise_ohne_Namen/";
 var pfad_bilder_mitName = "assets/Spiele/images/Landkreise_mit_Namen/";
@@ -87,8 +107,10 @@ console.log("btn_landkr_einfach_weiter: ", btn_landkr_einfach_weiter);
 
 // Bildindex, Score
 var frage_idx = 0;
-var score = 0;
+var score_leicht = 0;
 var progress_breite = 0;
+
+var score_leicht_text = document.getElementById("score_leicht");
 
 // EventListener für Beginn von Einfach/Schwer, Weiter von Einfach/schwer und 4 Antwort-Buttons
 btn_landkrspiel_einfach.addEventListener("click", starte_landkr_spiel_einfach);
@@ -104,14 +126,22 @@ antwort_4.addEventListener("click", (e) => pruefe_antwort_einfach(e));
 
 
 
+
+
+
+
+
+
+
+
+
 // Einfaches Spiel
 function starte_landkr_spiel_einfach() {
-  console.log("starte_landkr_spiel_einfach");
   container_anfang.classList.add("hide");
   container_spiel_einfach.classList.remove("hide");
 
-  console.log("btn_landkrspiel_einfach 1: ", btn_landkrspiel_einfach);
-  console.log("btn_landkrspiel_schwer 1: ", btn_landkrspiel_schwer);
+  // console.log("btn_landkrspiel_einfach 1: ", btn_landkrspiel_einfach);
+  // console.log("btn_landkrspiel_schwer 1: ", btn_landkrspiel_schwer);
   // console.log("btn_landkr_einfach_weiter 1: ", btn_landkr_einfach_weiter);
 
   // Zufällige Liste
@@ -129,12 +159,9 @@ function starte_landkr_spiel_einfach() {
 function weiter_einfach() {
   if (frage_idx === 15) {
     console.log("SPIEL ENDE!");
-    container_ende.textContent = "Score: " + score + ", Weiter?";
-    container_ende.classList.remove("hide");
+    score_leicht_text.textContent = "Score: " + score_leicht + " / 15";
     return;
   }
-
-  console.log("aktueller_landkreis: ", aktueller_landkreis);
 
   // Entferne IDs, also Grün/Rot
   antwort_1.removeAttribute("id");
@@ -158,13 +185,11 @@ function weiter_einfach() {
   aktueller_landkreis = shuffledLandkreise[zuf_liste[frage_idx]];
   const neuerPfad = pfad_bilder_ohneName + aktueller_landkreis[0] + pfad_png;
   frage_bild.src = neuerPfad;
-  console.log("aktueller_landkreis =", aktueller_landkreis);
 
   // Get 4 Antwortmöglichkeiten
   let restl_landkreise = shuffledLandkreise.filter(item => item !== aktueller_landkreis);
   restl_landkreise = restl_landkreise.slice(0,3);
   restl_landkreise.push(aktueller_landkreis);
-  // console.log("restl_landkreise 1 =", restl_landkreise);
 
   // Shuffle 4 Antwortmöglichkeiten
   for (let i = restl_landkreise.length - 1; i > 0; i--) {
@@ -185,44 +210,35 @@ function weiter_einfach() {
       antwort_richtig_idx = i;
     }
   })
-  // console.log("Richtiges Index =", antwort_richtig_idx);
-
-
 
   frage_idx++;
-  progress_breite = progress_breite + frage_idx;
-  setInterval(() => {
-    // const computedStyle = getComputedStyle(progress);
-    // const breite = parseFloat(computedStyle.getPropertyValue("--progress_breite")) || 0
-    progress.style.setProperty("--progress_breite", progress_breite)
-  }, 5)
+  update_progress_schwer(frage_idx, 0);
+
+
 }
 
 
 function pruefe_antwort_einfach(e) {
-  // console.log("pruefe_antwort_einfach");
-  // console.log("e: ", e);
-
   if (e.currentTarget.outerText.trim() === aktueller_landkreis[1].trim()) {
-    console.log("RICHTIG!");
+    // console.log("RICHTIG!");
     e.currentTarget.setAttribute("id", "btn_antwort_richtig");
     container_spiel_einfach.setAttribute("id", "container_spiel_einfach_richtig");
     horizontale_linie.setAttribute("id", "horiz_linie_richtig");
 
     const neuerPfad_mitName = pfad_bilder_mitName + aktueller_landkreis[0] + pfad_png;
-    console.log("neuerPfad_mitName 1 =", neuerPfad_mitName);
+    // console.log("neuerPfad_mitName 1 =", neuerPfad_mitName);
     frage_bild.src = neuerPfad_mitName;
 
-    score++;
+    score_leicht++;
   }
   else {
-    console.log("FALSCH!");
+    // console.log("FALSCH!");
     e.currentTarget.setAttribute("id", "btn_antwort_falsch");
     container_spiel_einfach.setAttribute("id", "container_spiel_einfach_falsch");
     horizontale_linie.setAttribute("id", "horiz_linie_falsch");
 
     const neuerPfad_mitName = pfad_bilder_mitName + aktueller_landkreis[0] + pfad_png;
-    console.log("neuerPfad_mitName 2 =", neuerPfad_mitName);
+    // console.log("neuerPfad_mitName 2 =", neuerPfad_mitName);
     frage_bild.src = neuerPfad_mitName;
   }
 
@@ -236,7 +252,7 @@ function pruefe_antwort_einfach(e) {
   antwort_4.style.pointerEvents = "none";
 
   const neuerPfad_mitName = pfad_bilder_mitName + aktueller_landkreis[0] + pfad_png;
-  console.log("neuerPfad_mitName 3 =", neuerPfad_mitName);
+  // console.log("neuerPfad_mitName 3 =", neuerPfad_mitName);
   frage_bild.src = neuerPfad_mitName;
 
 }
@@ -252,22 +268,34 @@ function pruefe_antwort_einfach(e) {
 
 
 
+var progress_schwer = document.querySelector(".progress_schwer");
+var progress_fuellen_schwer = document.querySelector(".progress_fuellen_schwer");
+var progress_text_schwer = document.querySelector(".progress_text_schwer");
+var antwort_schwer = document.querySelector(".btn_antworten");
+var hinweis_btn = document.querySelector(".btn_hinweis");
+var eingabe_schwer = document.getElementById("eingabe");
+var hinweis_ausgabe = document.getElementById("hinweis_ausgabe");
+var eingabe_aufforderung_text = document.getElementById("eingabe_lbl");
+var score_schwer_text = document.getElementById("score_schwer");
+var score_schwer = 0;
+var richtig_falsch_bool = false;
+var antwort_laenge;
+var hinweis_idx;
+var hinweis_text;
 
-
-
-// Einfaches Spiel
+// Schweres Spiel
 function starte_landkr_spiel_schwer() {
-  console.log("starte_landkr_spiel_schwer");
   container_anfang.classList.add("hide");
   container_spiel_schwer.classList.remove("hide");
 
+
   // Zufällige Liste
   zuf_liste = Array.from({ length: 15 }, (_, i) => i);
-  // for (let i = zuf_liste.length - 1; i > 0; i--) {
-  //   const j = Math.floor(Math.random() * (i + 1));
-  //   [zuf_liste[i], zuf_liste[j]] = [zuf_liste[j], zuf_liste[i]]; // Tausche Elemente
-  // }
-  shuffledLandkreise = zuf_liste.map(index => landkreisNamen_einfach[index]);
+  for (let i = zuf_liste.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [zuf_liste[i], zuf_liste[j]] = [zuf_liste[j], zuf_liste[i]]; // Tausche Elemente
+  }
+  shuffledLandkreise = zuf_liste.map(index => landkreisNamen_schwer[index]);
 
   weiter_schwer();
 }
@@ -278,31 +306,126 @@ function starte_landkr_spiel_schwer() {
 function weiter_schwer() {
   if (frage_idx === 15) {
     console.log("SPIEL ENDE!");
-    container_ende.textContent = "Score: " + score + ", Weiter?";
-    container_ende.classList.remove("hide");
+    score_schwer_text.textContent = "Score: " + score_schwer + " / 15";
     return;
   }
 
+  // Alle Attribute wieder auf 0 setzen
+  antwort_schwer.removeAttribute("id", "btn_antwort_gegeben");
+  antwort_schwer.style.pointerEvents = "auto";
+  antwort_schwer.disabled = false;
+  eingabe_schwer.disabled = false;
+  eingabe_schwer.value = "";
+  hinweis_btn.disabled = false;
+  hinweis_text = "";
+  hinweis_ausgabe.textContent = "";
+  hinweis_idx = 0;
+  eingabe_aufforderung_text.textContent = "Landkreis eingeben";
+  richtig_falsch_bool = false;
+
+  container_spiel_schwer.removeAttribute("id", "container_spiel_schwer_richtig");
+  container_spiel_schwer.removeAttribute("id", "container_spiel_schwer_falsch");
+  horizontale_linie_schwer.removeAttribute("id", "horiz_linie_richtig");
+  horizontale_linie_schwer.removeAttribute("id", "horiz_linie_falsch");
+
+  // Landkreise shuffeln
   aktueller_landkreis = shuffledLandkreise[zuf_liste[frage_idx]];
+  antwort_laenge = aktueller_landkreis[1].length;
+  // console.log("aktueller_landkreis =", aktueller_landkreis);
+  // console.log("antwort_laenge =", antwort_laenge);
+  
+  // Neues Bild einfügen
   const neuerPfad = pfad_bilder_ohneName + aktueller_landkreis[0] + pfad_png;
   frage_bild_schwer.src = neuerPfad;
-  console.log("aktueller_landkreis =", aktueller_landkreis);
-  console.log("neuerPfad: ", neuerPfad);
+  // console.log("aktueller_landkreis =", aktueller_landkreis);
+
+  // Hinweis
+  hinweis_btn.onclick = function(){
+    if (hinweis_text.length !== antwort_laenge) {
+      hinweis_text += aktueller_landkreis[1][hinweis_idx];
+      hinweis_ausgabe.textContent = hinweis_text;
+      hinweis_idx++;
+    }
+  }
 
 
+  // Klicken zur Eingabe
+  antwort_schwer.onclick = function(){
+    eingabe_text = eingabe_schwer.value.toLowerCase();
+    // console.log(eingabe_text);
 
+    //Keine Antwort mehr möglich
+    eingabe_aufforderung_text.textContent = "";
+    antwort_schwer.setAttribute("id", "btn_antwort_gegeben");
+    antwort_schwer.style.pointerEvents = "none";
+    antwort_schwer.disabled = true;
+    eingabe_schwer.disabled = true;
+    hinweis_ausgabe.textContent = aktueller_landkreis[1];
+    hinweis_btn.disabled = true;
 
+    //Antwort prüfen
+    aktueller_landkreis.forEach(() => {
+      // antwort_schwer.setAttribute("id", "btn_antwort_gegeben");
+      let richtig = aktueller_landkreis.some(loes_i => {  // Bool, muss mit einem übereinstimmen
+        if (loes_i === eingabe_text) {
+          console.log("RICHTIG");
+          richtig_falsch_bool = true;
+          container_spiel_schwer.setAttribute("id", "container_spiel_schwer_richtig");
+          horizontale_linie_schwer.setAttribute("id", "horiz_linie_richtig");
+          return true; // Abbrechen, wenn richtig
+        }
+      });
+      if (!richtig) {
+        console.log("FALSCH");
+        richtig_falsch_bool = false;
+        container_spiel_schwer.setAttribute("id", "container_spiel_schwer_falsch");
+        horizontale_linie_schwer.setAttribute("id", "horiz_linie_falsch");
+      }
+    })
 
+    if (richtig_falsch_bool) {
+      score_schwer++;
+    }
+    console.log("richtig_falsch_bool =", richtig_falsch_bool);
+    console.log("score_schwer =", score_schwer);
 
+    // Bild mit Lösung
+    const neuerPfad_mitName = pfad_bilder_mitName + aktueller_landkreis[0] + pfad_png;
+    frage_bild_schwer.src = neuerPfad_mitName;
+  }
 
-
-
-
+  // Fragebild-Index erhöhen
+  if (richtig_falsch_bool) {
+    score_schwer++;
+  }
   frage_idx++;
+  update_progress_schwer(frage_idx, 1);
 
 }
 
 
+
+
+
+
+
+
+function update_progress_schwer(value, schwierigkeit) {
+  console.log("value 1: ", value);
+  value = Math.round(value);
+  console.log("value 2: ", value);
+
+  let breite = ( (value) / 15 ) * 100;
+
+  if (schwierigkeit === 0) {
+    document.querySelector(".progress_fuellen_leicht").style.width = `${breite}%`;
+    document.querySelector(".progress_text_leicht").textContent = frage_idx + " / 15";
+  }
+  else if (schwierigkeit === 1) {
+  document.querySelector(".progress_fuellen_schwer").style.width = `${breite}%`;
+  document.querySelector(".progress_text_schwer").textContent = frage_idx + " / 15";
+  }
+}
 
 
 
