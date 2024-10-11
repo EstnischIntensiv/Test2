@@ -5,6 +5,7 @@
 }
 
 
+/* Einfaches Spiel */
 .container_anfang, 
 .container_spiel_einfach,
 .container_spiel_schwer {
@@ -31,10 +32,12 @@
   }
 } */
 
-#container_spiel_einfach_richtig {
+#container_spiel_einfach_richtig,
+#container_spiel_schwer_richtig {
   border: 2px solid var(--gruen-2);
 }
-#container_spiel_einfach_falsch {
+#container_spiel_einfach_falsch,
+#container_spiel_schwer_falsch {
   border: 2px solid var(--rot-2);
 }
 
@@ -88,8 +91,6 @@
   margin-bottom: 2%;
 }
 
-
-
 .container_richt_fal_z1,
 .container_richt_fal_z2 {
   display: flex;
@@ -109,7 +110,6 @@
   background-color: none;
 }
 
-
 .btn_antwort_1,
 .btn_antwort_2,
 .btn_antwort_3,
@@ -126,7 +126,6 @@
   width: 40%;
   /* height: 40%; */
   cursor: pointer;
-  content: "TEST";
 
   white-space: nowrap;
   display: flex;
@@ -156,13 +155,10 @@
   font-size: 20px;
   font-weight: bold;
   color: var(--text-clr);
-
 }
 
-
-
-
-.horiz_linie {
+.horiz_linie,
+.horiz_linie_schwer {
   width: 109%;
   /* max-width: 100%; */
   border: none;
@@ -176,7 +172,6 @@
   border-color: var(--rot-2);
 }
 
-
 #btn_weiter_einfach {
   display: flex;
   align-items: center;
@@ -189,7 +184,8 @@
   background-color: var(--secondary-text-clr);
 }
 
-.progress {
+/* .progress,
+.progress_schwer {
   position: relative;
   width: 80%;
   height: 3em;
@@ -197,9 +193,9 @@
   margin-bottom: 1em;
 
   background-color: var(--secondary-text-clr);
-}
-
-.progress::before {
+} */
+/* .progress::before,
+.progress_schwer::before {
   content: "";
 
   display: flex;
@@ -214,8 +210,95 @@
   background-color: var(--blau-2);
   border-radius: 1em;
   padding: 0.2em;
+} */
+
+.progress_schwer,
+.progress_leicht {
+  position: relative;
+  width: 20em;
+  height: 2em;
+  margin-bottom: 1em;
+  
+  background: var(--blau-1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.progress_fuellen_schwer,
+.progress_fuellen_leicht {
+  width: 0%;
+  height: 100%;
+  background: var(--blau-2);
+  transition: all 0.2s;
+}
+.progress_text_schwer,
+.progress_text_leicht {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  font: bold 14px "Quicksand", sans-serif;
+  color: white;
 }
 
+
+
+/* Schweres Spiel */
+.container_antworten_hinweis {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  margin-top: -1em;
+  padding: 1em;
+}
+.btn_hinweis,
+.btn_antworten,
+#btn_weiter_schwer {
+  color: var(--line-clr);
+  border-radius: .5em;
+  padding: 1.0em 4.0em;
+  border: 0;
+  
+  border: 4px solid var(--secondary-text-clr);
+  background-color: var(--blau-2);
+  
+  width: 40%;
+  height: 40%;
+  cursor: pointer;
+  
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#btn_weiter_schwer {
+  background-color: var(--text-clr);
+}
+.btn_hinweis:hover,
+.btn_antworten:hover {
+  background-color: var(--blau-1);
+}
+#btn_weiter_schwer:hover {
+  background-color: var(--secondary-text-clr);
+}
+#btn_antwort_gegeben {
+  background-color: var(--secondary-text-clr);
+}
+
+#container_unten_schwer,
+#container_ende_leicht {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.score_schwer,
+.score_leicht {
+  margin-left: auto;
+  /* font-size: 16px; */
+}
 
 
 
@@ -271,8 +354,8 @@
   padding: 1.25rem 2.5rem;
   /* padding: 1.5rem 3rem; */
   border-radius: 4rem;
-  border: 3px solid black;
-  color: black;
+  border: 3px solid var(--blau-1);
+  color: var(--text-clr);
   display: flex;
   align-items: center;
   column-gap: .5rem;
@@ -282,6 +365,7 @@
 }
 .btn_schwer_inhalt {
   background: var(--gradient-color-rot);
+  border: 3px solid var(--rot-1);
 }
 
 .btn_einfach_text {
@@ -333,7 +417,7 @@
   background: var(--gradient-color-blau);
   padding: 1.25rem 3rem;
   border-radius: 4rem;
-  border: 3px solid black;
+  border: 3px solid var(--blau-1);
   z-index: -1;
   transition: transform .3s;
 
@@ -341,6 +425,7 @@
 }
 .btn_schatten_schwer {
   background: var(--gradient-color-rot);
+  border: 3px solid var(--rot-1);
 }
 
 #btn_einfach:hover .btn_schatten_einfach,
@@ -371,8 +456,75 @@
 
 
 
+/* Antwort, Hinweis und Weiter für Schwer */
+#hinweis_ausgabe {
+  min-height: 1.5em;
+  margin-top: -1em;
+  margin-bottom: -1em;
+}
 
+.input-group {
+  position: relative;
+  margin: 20px 0;
+}
+.input-group label {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #fff;
+  padding: 0 5px;
+  pointer-events: none;
+  transition: .5s;
+}
+.input-group input {
+  width: 320px;
+  height: 40px;
+  font-size: 16px;
+  color: #fff;
+  padding: 0 10px;
+  background: transparent;
+  border: 1.2px solid #fff;
+  outline: none;
+  border-radius: 5px;
+  border: 2px solid white;
+}
+input:focus,
+input:valid {
+    color: var(--blau-2);
+    border: 2px solid var(--blau-2);
+}
+.input-group input:focus~label,
+.input-group input:valid~label {
+    top: 0;
+    font-size: 12px;
+    color: var(--blau-2);
+    background: var(--base-clr);
+}
 
+/* #oe {
+  width: 2em;
+  margin-right: 2em;
+  text-align: right;
+} */
+
+.hinweis_und_oe {
+  /* background-color: red; */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; /* Zentriert vertikal, falls notwendig */
+  gap: 2em;
+}
+
+#oe {
+  text-align: left; /* Text des Labels bleibt am rechten Rand */
+}
+
+#hinweis_ausgabe {
+  width: 10em;
+  margin-left: 1em; /* Abstand zwischen den beiden Labels */
+}
 
 
 
