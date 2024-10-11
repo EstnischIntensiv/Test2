@@ -60,8 +60,15 @@
 
   <!-- HIER BEGINNT DAS EINFACHE SPIEL -->
   <div class="container_spiel_einfach hide">
-    <span class="progress"></span>
-    Welcher Landkreis ist dies?
+
+    <div class="progress_leicht">
+      <div class="progress_fuellen_leicht">
+        <span class="progress_text_leicht"></span>
+      </div>
+     </div>
+
+    <!-- <span class="progress"></span> -->
+    <!-- Welcher Landkreis ist dies? -->
     
     <img class="frage_bild" src="">
 
@@ -76,13 +83,14 @@
 
     <hr class="horiz_linie">
 
-    <div id="container_loesung">
+    <div id="container_ende_leicht">
       <button id="btn_weiter_einfach">Weiter</button>
+      <label id="score_leicht"></label>
     </div>
 
-    <div class="ende hide">
+    <!-- <div class="ende hide">
       Score: X, Weiter?
-    </div>
+    </div> -->
 
   </div>
 
@@ -93,15 +101,41 @@
 
   <!-- HIER BEGINNT DAS SCHWERE SPIEL -->
   <div class="container_spiel_schwer hide">
-    <span class="progress"></span>
-    Welcher Landkreis (schwer) ist dies?
+
+    <!-- Progress Bar -->
+     <div class="progress_schwer">
+      <div class="progress_fuellen_schwer">
+        <span class="progress_text_schwer"></span>
+      </div>
+     </div>
 
     <img class="frage_bild_schwer" src="">
 
-    <hr class="horiz_linie">
 
-    <div id="container_loesung">
+    <!-- Fancy Eingabe -->
+    <div class="input-group">
+      <input type="text" id="eingabe" required>
+      <label for="" id="eingabe_lbl">Lankreis eingeben</label>
+    </div>
+
+    <div class="container_antworten_hinweis">
+      <button class="btn_hinweis">Hinweis</button>
+      <button class="btn_antworten">Antworten</button>
+    </div>
+
+
+    <div class="hinweis_und_oe">
+      <label id="oe">õ</label>
+      <label id="hinweis_ausgabe"></label>
+    </div>
+
+
+    <hr class="horiz_linie_schwer">
+
+    <div id="container_unten_schwer">
       <button id="btn_weiter_schwer">Weiter</button>
+      <!-- <button id="spiel_restart"></button> -->
+      <label id="score_schwer"></label>
     </div>
 
   </div>
