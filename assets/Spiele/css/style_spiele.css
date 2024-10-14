@@ -6,7 +6,7 @@
 
 
 /* Einfaches Spiel */
-.container_anfang, 
+.container_anfang,
 .container_spiel_einfach,
 .container_spiel_schwer {
   /* border: 1px solid var(--line-clr); */
@@ -257,7 +257,7 @@
   color: var(--line-clr);
   border-radius: .5em;
   padding: 1.0em 4.0em;
-  border: 0;
+  /* border: 0; */
   
   border: 4px solid var(--secondary-text-clr);
   background-color: var(--blau-2);
@@ -457,6 +457,14 @@
 
 
 /* Antwort, Hinweis und Weiter für Schwer */
+#input_aussen {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 1em;
+}
+
+
 #hinweis_ausgabe {
   min-height: 1.5em;
   margin-top: -1em;
@@ -465,16 +473,16 @@
 
 .input-group {
   position: relative;
-  margin: 20px 0;
+  margin: 2em 0;
 }
 .input-group label {
   position: absolute;
   top: 50%;
-  left: 5px;
+  left: 0.5em;
   transform: translateY(-50%);
   font-size: 16px;
   color: #fff;
-  padding: 0 5px;
+  padding: 0 0.5em;
   pointer-events: none;
   transition: .5s;
 }
@@ -483,11 +491,11 @@
   height: 40px;
   font-size: 16px;
   color: #fff;
-  padding: 0 10px;
+  padding: 0 1em;
   background: transparent;
-  border: 1.2px solid #fff;
+  border: 2px solid #fff;
   outline: none;
-  border-radius: 5px;
+  border-radius: 0.5em;
   border: 2px solid white;
 }
 input:focus,
@@ -503,27 +511,42 @@ input:valid {
     background: var(--base-clr);
 }
 
-/* #oe {
-  width: 2em;
-  margin-right: 2em;
-  text-align: right;
-} */
+
+
 
 .hinweis_und_oe {
   /* background-color: red; */
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center; /* Zentriert vertikal, falls notwendig */
   gap: 2em;
 }
-
-#oe {
-  text-align: left; /* Text des Labels bleibt am rechten Rand */
+/* #oe {
+  text-align: left;
+} */
+#btn_oe {
+  color: white;
+  border-radius: .5em;
+  padding: 1.0em 1.0em;
+  
+  border: 2px solid white;
+  background-color: transparent;
+  
+  width: 1em;
+  height: 40%;
+  cursor: pointer;
+  
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+#btn_oe:hover {
+  background-color: var(--blau-1);
+}
 #hinweis_ausgabe {
-  width: 10em;
-  margin-left: 1em; /* Abstand zwischen den beiden Labels */
+  display: flex;
+  justify-content: center;
 }
 
 
