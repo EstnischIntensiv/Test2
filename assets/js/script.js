@@ -250,6 +250,13 @@ function ladeSkript(url) {
   skript.src = url;
   head.appendChild(skript);
 }
+function ladeModul(url) {
+  var head = document.getElementsByTagName("head")[0];
+  var skript = document.createElement("script");
+  skript.type = "module";
+  skript.src = url;
+  head.appendChild(skript);
+}
 
 
 
@@ -262,6 +269,8 @@ document.querySelectorAll('.btn_ungedrueckt, .btn_lek_i_ungedr,\
     // Lese die URL aus dem data-content-Attribut des geklickten Buttons
     var contentUrl_1 = this.getAttribute('data-content');
     var contentUrl_2 = this.getAttribute('data-content-2');
+    var contentUrl_3 = this.getAttribute('data-content-3');
+    console.log("contentUrl_3 =", contentUrl_3);
 
     // Lade die HTML-Datei und ersetze den Inhalt des <main>-Elements
     fetch(contentUrl_1)
@@ -272,6 +281,9 @@ document.querySelectorAll('.btn_ungedrueckt, .btn_lek_i_ungedr,\
         document.getElementById('mainInhalt').innerHTML = data;
 
         ladeSkript(contentUrl_2);
+        if (contentUrl_3 !== null) {
+          ladeSkript(contentUrl_3);
+        }
 
         // Skript dynamisch hinzufügen
         // const script = document.createElement('script');
