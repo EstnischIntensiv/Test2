@@ -248,8 +248,34 @@ function ladeSkript(url) {
   var skript = document.createElement("script");
   skript.type = "text/javascript";
   skript.src = url;
+  //skript.onload = resolve;
+  //skript.onerror = reject;
   head.appendChild(skript);
 }
+
+function ladeSkript_2(url) {
+  return new Promise((resolve, reject) => {
+    var head = document.getElementsByTagName("head")[0];
+    var skript = document.createElement("script");
+    skript.type = "text/javascript";
+    skript.src = url;
+
+    // Skript erfolgreich geladen
+    skript.onload = () => {
+      //console.log(`Skript ${url} erfolgreich geladen`);
+      resolve();
+    };
+
+    // Fehler beim Laden des Skripts
+    skript.onerror = () => {
+      //console.error(`Fehler beim Laden von Skript ${url}`);
+      reject();
+    };
+
+    head.appendChild(skript);
+  });
+}
+
 function ladeModul(url) {
   var head = document.getElementsByTagName("head")[0];
   var skript = document.createElement("script");
@@ -280,10 +306,25 @@ document.querySelectorAll('.btn_ungedrueckt, .btn_lek_i_ungedr,\
         // console.log("contentUrl_1: ", contentUrl_1)
         document.getElementById('mainInhalt').innerHTML = data;
 
-        ladeSkript(contentUrl_2);
-        if (contentUrl_3 !== null) {
-          ladeSkript(contentUrl_3);
+        //console.log("contentUrl_3: ", contentUrl_3);
+        //if (contentUrl_3 !== null) {
+        //  ladeSkript(contentUrl_3);
+        //}
+        //ladeSkript(contentUrl_2);
+
+        if (contentUrl_3) {
+          ladeSkript_2(contentUrl_3)
+          .then(() => {
+            if (contentUrl_2) {
+              return ladeSkript_2(contentUrl_2)
+            }
+          })
+        } else if (contentUrl_2) {
+          ladeSkript_2(contentUrl_2)
         }
+
+
+
 
         // Skript dynamisch hinzufügen
         // const script = document.createElement('script');
