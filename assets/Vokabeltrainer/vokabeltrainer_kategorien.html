@@ -1,0 +1,140 @@
+<link rel="stylesheet" href="assets/Vokabeltrainer/css/style_vokabeltrainer.css">
+<script type="text/javascript" src="/js/script_vokabeltrainer_kategorien.js" defer></script>
+<!-- <script type="module" src="/assets/Vokabeltrainer/Vokabeln/script_vokabeln_kategorien.js" defer></script> -->
+
+
+<main id="mainInhalt">
+  <!-- Auswahl der Kategorien -->
+  <div class="container_anfang">
+    <h2>Vokabeltrainer Kategorien</h2>
+    <p>Wähle Kategorie und gebe Anzahl an Vokabeln an.</p>
+
+
+    <div class="container_switches">
+      <div class="container_switch">
+        <input type="checkbox" id="toggle_switch_sprachrichtung" class="switch_sprachrichtung">
+        <label for="toggle_switch_sprachrichtung" class="switch_sprachrichtung_lbl"></label>
+        <span id="switch_sprachrichtung_text">DE -> EST</span>
+      </div>
+
+      <div class="container_switch">
+        <input type="checkbox" id="toggle_switch_schwierigkeit" class="switch_schwierigkeit">
+        <label for="toggle_switch_schwierigkeit" class="switch_schwierigkeit_lbl"></label>
+        <span id="switch_schwierigkeit_text">Leicht</span>
+      </div>
+    </div>
+
+
+    <div id="container_auswahl">
+      <button class="kateg btn_kat_01">Zahlen (#)</button>
+      <button class="kateg btn_kat_02">Tiere (#)</button>
+      <button class="kateg btn_kat_03">Essen & Trinken (#)</button>
+      <button class="kateg btn_kat_04">Farben (#)</button>
+      <button class="kateg btn_kat_05">Kleidung (#)</button>
+      <button class="kateg btn_kat_06">Möbel & Haushalt (#)</button>
+      <button class="kateg btn_kat_07">Familie & Freunde (#)</button>
+      <button class="kateg btn_kat_08">Bildung (#)</button>
+      <button class="kateg btn_kat_09">Freizeit (#)</button>
+      <button class="kateg btn_kat_10">Wetter (#)</button>
+      <button class="kateg btn_kat_11">Reisen & Transport (#)</button>
+      <button class="kateg btn_kat_12">Politik (#)</button>
+      <button class="kateg btn_kat_13">Zeit & Datum (#)</button>
+    </div>
+
+
+    <!-- Eingabe Anzahl -->
+    <div class="eingabe_anzahl_gruppe">
+      <input type="text" id="eingabe_anzahl" required>
+      <label for="" id="eingabe_anzahl_lbl">Anzahl an Vokabeln eingeben</label>
+    </div>
+
+    <button id="btn_starte_training">Vokabeltraining starten</button>
+
+    <hr class="horiz_linie">
+    <!-- <span class="erklaerung">Hier kommt eine Erklärung zur Auswahl.</span> -->
+
+    <div id="container_unten">
+      <label id="error_ausgabe"></label>
+    </div>
+    
+  </div>
+
+
+
+
+
+
+  <!-- HIER BEGINNT DAS VOKABELTRAINING LEICHT -->
+  <div class="container_vokabeltraining_leicht hide">
+
+    <!-- Progress Bar -->
+    <div class="progress">
+      <div class="progress_fuellen">
+        <span class="progress_text"></span>
+      </div>
+    </div>
+
+    Übersetze
+
+    <!-- Fragewort -->
+    <label class="frage_wort_leicht">FRAGEWORT</label>
+
+    <div class="container_richt_fal_z1">
+      <button class="btn_antwort_1"><span>Antwort 1</span></button>
+      <button class="btn_antwort_2"><span>Antwort 2</span></button>
+    </div>
+    <div class="container_richt_fal_z2">
+      <button class="btn_antwort_3"><span>Antwort 3</span></button>
+      <button class="btn_antwort_4"><span>Antwort 4</span></button>
+    </div>
+
+
+    <hr class="horiz_linie">
+
+    <div id="container_ende_leicht">
+      <button id="btn_weiter_leicht">Weiter</button>
+      <label id="score_leicht"></label>
+    </div>
+
+    
+  </div>
+
+
+
+
+
+
+  <!-- HIER BEGINNT DAS VOKABELTRAINING SCHWER -->
+  <div class="container_vokabeltraining_schwer hide">
+
+    <!-- Progress Bar -->
+    <div class="progress">
+      <div class="progress_fuellen">
+        <span class="progress_text"></span>
+      </div>
+    </div>
+
+    <!-- Fragewort -->
+    <label class="frage_wort"></label>
+    
+    <!-- Eingabe Wort -->
+    <div class="eingabe_wort_div">
+      <input type="text" id="eingabe_wort" required>
+      <label for="" id="eingabe_wort_lbl">Vokabeleingabe</label>
+    </div>
+
+    <!-- Hinweis und Antwort Button -->
+    <div class="container_antworten_hinweis">
+      <button class="btn_hinweis">Hinweis</button>
+      <button class="btn_antworten">Antworten</button>
+    </div>
+
+  </div>
+
+
+</main>
+
+
+
+
+
