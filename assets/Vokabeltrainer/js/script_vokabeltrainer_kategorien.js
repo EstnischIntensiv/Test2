@@ -252,26 +252,26 @@ function kategorie_gewaehlt(button) {
         break;
       }
     }
+    console.log("kategorie_idx =", kategorie_idx);
 
-
-    switch (kategorie_idx) {
-      case 0:
-        woerter = vokabeln_zahlen;
-        anzahl_vokabeln_maximal = vokabeln_zahlen.length;
-        break;
-      case 1:
-        woerter = vokabeln_tiere;
-        anzahl_vokabeln_maximal = vokabeln_tiere;
-        break;
-      case 2:
-        woerter = vokabeln_essen_und_trinken;
-        anzahl_vokabeln_maximal = vokabeln_essen_und_trinken.length;
-        break;
-      case 3:
-        woerter = vokabeln_farben;
-        anzahl_vokabeln_maximal = vokabeln_farben.length;
-        break;
-    }
+    // switch (kategorie_idx) {
+    //   case 0:
+    //     woerter = vokabeln_zahlen;
+    //     anzahl_vokabeln_maximal = vokabeln_zahlen.length;
+    //     break;
+    //   case 1:
+    //     woerter = vokabeln_tiere;
+    //     anzahl_vokabeln_maximal = vokabeln_tiere;
+    //     break;
+    //   case 2:
+    //     woerter = vokabeln_essen_und_trinken;
+    //     anzahl_vokabeln_maximal = vokabeln_essen_und_trinken.length;
+    //     break;
+    //   case 3:
+    //     woerter = vokabeln_farben;
+    //     anzahl_vokabeln_maximal = vokabeln_farben.length;
+    //     break;
+    // }
     // console.log("woerter 0:\n", woerter);
     // console.log("woerter:\n", woerter[0]);
     // console.log("woerter:\n", woerter[1]);
@@ -296,7 +296,7 @@ function kategorie_gewaehlt(button) {
 // Prüfe Eingaben der Auswahl und Anzahl
 function pruefe_auswahl_kategorien_und_anzahl() {
   console.log("= = = = = = ANFANG = = = = = =")
-  console.log("starte_vokabeltraining_pruefen");
+  // console.log("starte_vokabeltraining_pruefen");
 
   // Variablen initialisieren
   kategorie_ausgewaehlt = false;
@@ -376,10 +376,34 @@ function pruefe_auswahl_kategorien_und_anzahl() {
 // HIER BEGINNT DAS LEICHTE VOKABELTRAINING
 function starte_vokabeltraining_leicht() {
   console.log("Hier beginnt der leichte Vokabeltrainer.");
-  // console.log("woerter 1:\n", woerter);
+
+
+  switch (kategorie_idx) {
+    case 0:
+      woerter = vokabeln_zahlen;
+      anzahl_vokabeln_maximal = vokabeln_zahlen.length;
+      break;
+    case 1:
+      woerter = vokabeln_tiere;
+      anzahl_vokabeln_maximal = vokabeln_tiere;
+      break;
+    case 2:
+      woerter = vokabeln_essen_und_trinken;
+      anzahl_vokabeln_maximal = vokabeln_essen_und_trinken.length;
+      break;
+    case 3:
+      woerter = vokabeln_farben;
+      anzahl_vokabeln_maximal = vokabeln_farben.length;
+      break;
+  }
+  console.log("woerter 0:\n", woerter);
+
+  console.log("woerter.length =", woerter.length);
+
+
 
   // Zufällige Liste
-  zuf_liste = Array.from({ length: anzahl_vokabeln_maximal }, (_, i) => i);
+  zuf_liste = Array.from({ length: woerter.length }, (_, i) => i);
   for (let i = zuf_liste.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [zuf_liste[i], zuf_liste[j]] = [zuf_liste[j], zuf_liste[i]]; // Tausche Elemente
@@ -402,6 +426,8 @@ function weiter_leicht() {
 
   // console.log("Weiter Leicht.");
   aktuelles_wort_leicht = worter_shuffled[wort_idx]
+  console.log("frage_wort_leicht =", frage_wort_leicht);
+  console.log("aktuelles_wort_leicht =", aktuelles_wort_leicht);
   frage_wort_leicht.textContent = aktuelles_wort_leicht[Math.abs(sprachrichtung)];
   // console.log("aktuelles_wort_leicht =", aktuelles_wort_leicht);
 
@@ -416,6 +442,8 @@ function weiter_leicht() {
     const j = Math.floor(Math.random() * (i+1));
     [restl_woerter[i], restl_woerter[j]] = [restl_woerter[j], restl_woerter[i]];
   }
+
+  console.log("restl_woerter =", restl_woerter);
 
   // Antwortmöglichkeiten anzeigen auf Buttons
   antwort_1.querySelector("span").textContent = restl_woerter[0][Math.abs(1-sprachrichtung)];
