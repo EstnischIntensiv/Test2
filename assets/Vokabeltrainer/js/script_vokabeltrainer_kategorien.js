@@ -141,6 +141,13 @@ var btn_kategorien = document.getElementsByClassName("kateg");
 var hinweis_btn = document.querySelector(".btn_hinweis");
 var btn_weiter_leicht = document.getElementById("btn_weiter_leicht");
 var btn_weiter_schwer = document.getElementById("btn_weiter_schwer");
+var antwort_1 = document.querySelector(".btn_antwort_1");
+var antwort_2 = document.querySelector(".btn_antwort_2");
+var antwort_3 = document.querySelector(".btn_antwort_3");
+var antwort_4 = document.querySelector(".btn_antwort_4");
+var antworten = [antwort_1, antwort_2, antwort_3, antwort_4];
+var antwort_richtig;
+var antwort_richtig_idx;
 
 // EventListener
 btn_weiter_leicht.addEventListener("click", weiter_leicht);
@@ -152,8 +159,10 @@ var eingabe = document.getElementById("eingabe");
 var eingabe_aufforderung_text = document.getElementById("eingabe_lbl");
 var error_ausgabe = document.getElementById("error_ausgabe");
 
+
 // Eingabe
 var eingabe_anzahl = document.getElementById("eingabe_anzahl");
+var anzahl_vokabeln_maximal = 0;
 
 // Variablen bei Kategorienauswahl
 var sprachrichtung = 0; // 0 = DE -> EST; 1 = EST -> DE
@@ -169,7 +178,9 @@ var zuf_liste;
 var woerter;
 var worter_shuffled;
 var wort_idx = 0;
-var aktuelles_wort = "";
+var aktuelles_wort_leicht = "";
+var aktuelles_wort_schwer = "";
+var wort_idx = 0;
 var eingabe_text = "";
 var richtig_falsch_bool = false;
 var antwort_laenge = 0;
@@ -185,6 +196,7 @@ var toggle_switch_sprachrichtung = document.getElementById('toggle_switch_sprach
 var toggle_switch_schwierigkeit = document.getElementById('toggle_switch_schwierigkeit');
 var switch_sprachrichtung_text = document.getElementById('switch_sprachrichtung_text');
 var switch_schwierigkeit_text = document.getElementById('switch_schwierigkeit_text');
+
 // schwierigkeit
 // Setze den Anfangszustand des Switches
 toggle_switch_sprachrichtung.checked = false; // Initial auf 'Aus'
@@ -245,28 +257,31 @@ function kategorie_gewaehlt(button) {
     switch (kategorie_idx) {
       case 0:
         woerter = vokabeln_zahlen;
+        anzahl_vokabeln_maximal = vokabeln_zahlen.length;
         break;
       case 1:
         woerter = vokabeln_tiere;
+        anzahl_vokabeln_maximal = vokabeln_tiere;
         break;
       case 2:
         woerter = vokabeln_essen_und_trinken;
+        anzahl_vokabeln_maximal = vokabeln_essen_und_trinken.length;
         break;
       case 3:
         woerter = vokabeln_farben;
+        anzahl_vokabeln_maximal = vokabeln_farben.length;
         break;
     }
-    console.log("woerter 0:\n", woerter);
-    console.log("woerter:\n", woerter[0]);
-    console.log("woerter:\n", woerter[1]);
-    console.log("woerter:\n", woerter[2]);
+    // console.log("woerter 0:\n", woerter);
+    // console.log("woerter:\n", woerter[0]);
+    // console.log("woerter:\n", woerter[1]);
+    // console.log("woerter:\n", woerter[2]);
 
     eingabe_anzahl.value = vokabelanzahl[kategorie_idx][1];
-    console.log("eingabe_anzahl =", eingabe_anzahl.value);
   }
 
   kategorie_ausgewaehlt = button;
-  console.log(button.textContent + " ausgewählt");
+  // console.log(button.textContent + " ausgewählt");
 }
 
 
@@ -299,23 +314,21 @@ function pruefe_auswahl_kategorien_und_anzahl() {
     }
   }
   if (!kategorie_ausgewaehlt) {
-    console.log("Keine Kategorie gewählt -> Wähle Kategorie");
+    // console.log("Keine Kategorie gewählt -> Wähle Kategorie");
     error_ausgabe.textContent = "Wähle eine Kategorie aus!";
     return;
   }
-  else {
-    console.log("Eine Kategorie gewählt.");
-  }
+  // else {
+  //   console.log("Eine Kategorie gewählt.");
+  // }
 
   // Überprüfen, ob eine gültige Zahl eingegeben wurde
   if (isNaN(eingabe_anzahl.value) || eingabe_anzahl.value <= 0 || !Number.isInteger(Number(eingabe_anzahl.value))) {
-    console.log("eingabe_anzahl ungültig.");
     error_ausgabe.textContent = "Anzahl an Vokabeln ist ungültig!";
     anzahl_gueltig = false;
     return;
   }
   else {
-    console.log("eingabe_anzahl gültig.");
     anzahl_gueltig = true;
   }
 
@@ -333,7 +346,6 @@ function pruefe_auswahl_kategorien_und_anzahl() {
   if (kategorie_ausgewaehlt && anzahl_gueltig && anzahl_unter_max) {
 
     
-    console.log("schwierigkeit =", schwierigkeit);
     if (schwierigkeit === 0) { //Leicht
       container_anfang.classList.add("hide");
       container_vokabeltraining_leicht.classList.remove("hide");
@@ -364,44 +376,77 @@ function pruefe_auswahl_kategorien_und_anzahl() {
 // HIER BEGINNT DAS LEICHTE VOKABELTRAINING
 function starte_vokabeltraining_leicht() {
   console.log("Hier beginnt der leichte Vokabeltrainer.");
-  console.log("woerter 1:\n", woerter);
+  // console.log("woerter 1:\n", woerter);
 
   // Zufällige Liste
-  zuf_liste = Array.from({ length: eingabe_anzahl.value }, (_, i) => i);
+  zuf_liste = Array.from({ length: anzahl_vokabeln_maximal }, (_, i) => i);
   for (let i = zuf_liste.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [zuf_liste[i], zuf_liste[j]] = [zuf_liste[j], zuf_liste[i]]; // Tausche Elemente
   }
   worter_shuffled = zuf_liste.map(index => woerter[index]);
-  console.log("worter_shuffled:\n", worter_shuffled);
-
+  // console.log("worter_shuffled:\n", worter_shuffled);
 
   weiter_leicht();
 }
 
-function weiter_leicht() {
-  console.log("Weiter Leicht.");
 
-  frage_wort_leicht.textContent = worter_shuffled[wort_idx][Math.abs(sprachrichtung)];
+function weiter_leicht() {
+  if (wort_idx === parseInt(eingabe_anzahl.value)) {
+    console.log("ENDE");
+    return;
+  }
+
+  console.log("eingabe_anzahl =", eingabe_anzahl.value);
+  console.log("wort_idx =", wort_idx);
+
+  // console.log("Weiter Leicht.");
+  aktuelles_wort_leicht = worter_shuffled[wort_idx]
+  frage_wort_leicht.textContent = aktuelles_wort_leicht[Math.abs(sprachrichtung)];
+  // console.log("aktuelles_wort_leicht =", aktuelles_wort_leicht);
+
+  // Get 4 Antwortmöglichkeiten
+  let restl_woerter = worter_shuffled.filter(item => item !== aktuelles_wort_leicht);
+  restl_woerter = restl_woerter.slice(0,3);
+  restl_woerter.push(aktuelles_wort_leicht);
+  // console.log("restl_woerter 1:", restl_woerter);
+
+  // Shuffle 4 Antwortmöglichkeiten
+  for (let i = restl_woerter.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i+1));
+    [restl_woerter[i], restl_woerter[j]] = [restl_woerter[j], restl_woerter[i]];
+  }
+
+  // Antwortmöglichkeiten anzeigen auf Buttons
+  antwort_1.querySelector("span").textContent = restl_woerter[0][Math.abs(1-sprachrichtung)];
+  antwort_2.querySelector("span").textContent = restl_woerter[1][Math.abs(1-sprachrichtung)];
+  antwort_3.querySelector("span").textContent = restl_woerter[2][Math.abs(1-sprachrichtung)];
+  antwort_4.querySelector("span").textContent = restl_woerter[3][Math.abs(1-sprachrichtung)];
+
+  // console.log("restl_woerter 2:", restl_woerter);
+
+  // console.log("aktuelles_wort_leicht =", aktuelles_wort_leicht);
+  // Finde richtige Antwort
+  antworten.forEach( (antw,i) => {
+    if (antw.querySelector("span").textContent === aktuelles_wort_leicht) {
+      antwort_richtig = antw;
+      antwort_richtig_idx = i;
+    }
+  })
+
+
+
+
+
+
+
+
+
 
   wort_idx++;
+  update_progress(wort_idx, 0);
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -442,5 +487,32 @@ function weiter_schwer() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function update_progress(value, schwierigkeit) {
+  value = Math.round(value);
+  let breite = ( (value) / eingabe_anzahl.value ) * 100;
+
+  if (schwierigkeit === 0) {
+    document.querySelector(".progress_fuellen_leicht").style.width = `${breite}%`;
+    document.querySelector(".progress_text_leicht").textContent = wort_idx + " / " + eingabe_anzahl.value;
+  }
+  else if (schwierigkeit === 1) {
+  document.querySelector(".progress_fuellen_schwer").style.width = `${breite}%`;
+  document.querySelector(".progress_text_schwer").textContent = wort_idx + " / " + eingabe_anzahl.value;
+  }
+}
 
 

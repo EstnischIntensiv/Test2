@@ -214,8 +214,34 @@ input:valid {
 }
 
 
-
-
+/* Progress */
+.progress_schwer,
+.progress_leicht {
+  position: relative;
+  width: 20em;
+  height: 2em;
+  margin-bottom: 1em;
+  
+  background: var(--blau-1);
+  border-radius: 5px;
+  overflow: hidden;
+}
+.progress_fuellen_schwer,
+.progress_fuellen_leicht {
+  width: 0%;
+  height: 100%;
+  background: var(--blau-2);
+  transition: all 0.2s;
+}
+.progress_text_schwer,
+.progress_text_leicht {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  font: bold 14px "Quicksand", sans-serif;
+  color: white;
+}
 
 
 /* Antworten Buttons */

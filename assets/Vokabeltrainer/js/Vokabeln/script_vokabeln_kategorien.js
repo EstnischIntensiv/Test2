@@ -8,6 +8,13 @@ var vokabeln_zahlen = [
   ["eins", "üks"],
   ["zwei", "kaks"],
   ["drei", "kolm"],
+  ["vier", "neli"],
+  ["fünf", "viis"],
+  ["sechs", "kuus"],
+  // ["sieben", "seitse"],
+  // ["acht", "kaheksa"],
+  // ["neun", "üheksa"],
+  // ["zehn", "kümme"],
 ];
 
 var vokabeln_tiere = [
