@@ -6,7 +6,7 @@
   - Größe des gesamten Spieles ist im Web zu groß -> height, width, font-size, ... prüfen
   - Schwierigkeitsauswahl-Buttons passen noch nicht so schön zum restlichen Style
   - Entweder border für Richtig/Falsch dicker oder
-      Fragebild mit blauer Farbe und Richtig/Falsch in Grün/Rot anzeigen -> dh neue Bilder GIMP
+      Fragebild mit blauer Farbe und Richtig/Falsch in Grün/Rot anzeigen -> dh neue Bilder GIMP erzeugen
   
 
 - Leicht
@@ -140,10 +140,6 @@ function starte_landkr_spiel_einfach() {
   container_anfang.classList.add("hide");
   container_spiel_einfach.classList.remove("hide");
 
-  // console.log("btn_landkrspiel_einfach 1: ", btn_landkrspiel_einfach);
-  // console.log("btn_landkrspiel_schwer 1: ", btn_landkrspiel_schwer);
-  // console.log("btn_landkr_einfach_weiter 1: ", btn_landkr_einfach_weiter);
-
   // Zufällige Liste
   zuf_liste = Array.from({ length: 15 }, (_, i) => i);
   for (let i = zuf_liste.length - 1; i > 0; i--) {
@@ -226,7 +222,6 @@ function pruefe_antwort_einfach(e) {
     horizontale_linie.setAttribute("id", "horiz_linie_richtig");
 
     const neuerPfad_mitName = pfad_bilder_mitName + aktueller_landkreis[0] + pfad_png;
-    // console.log("neuerPfad_mitName 1 =", neuerPfad_mitName);
     frage_bild.src = neuerPfad_mitName;
 
     score_leicht++;
@@ -238,7 +233,6 @@ function pruefe_antwort_einfach(e) {
     horizontale_linie.setAttribute("id", "horiz_linie_falsch");
 
     const neuerPfad_mitName = pfad_bilder_mitName + aktueller_landkreis[0] + pfad_png;
-    // console.log("neuerPfad_mitName 2 =", neuerPfad_mitName);
     frage_bild.src = neuerPfad_mitName;
   }
 
@@ -252,7 +246,6 @@ function pruefe_antwort_einfach(e) {
   antwort_4.style.pointerEvents = "none";
 
   const neuerPfad_mitName = pfad_bilder_mitName + aktueller_landkreis[0] + pfad_png;
-  // console.log("neuerPfad_mitName 3 =", neuerPfad_mitName);
   frage_bild.src = neuerPfad_mitName;
 
 }
@@ -273,6 +266,7 @@ var progress_fuellen_schwer = document.querySelector(".progress_fuellen_schwer")
 var progress_text_schwer = document.querySelector(".progress_text_schwer");
 var antwort_schwer = document.querySelector(".btn_antworten");
 var hinweis_btn = document.querySelector(".btn_hinweis");
+var btn_oe = document.getElementById("btn_oe");
 var eingabe_schwer = document.getElementById("eingabe");
 var hinweis_ausgabe = document.getElementById("hinweis_ausgabe");
 var eingabe_aufforderung_text = document.getElementById("eingabe_lbl");
@@ -282,6 +276,14 @@ var richtig_falsch_bool = false;
 var antwort_laenge;
 var hinweis_idx;
 var hinweis_text;
+
+
+
+  // Füge Buchstaben OE in das Inputfeld hinzu
+  btn_oe.addEventListener('click', function() {
+    eingabe_schwer.value += 'õ';
+  });
+
 
 // Schweres Spiel
 function starte_landkr_spiel_schwer() {
@@ -307,6 +309,8 @@ function weiter_schwer() {
   if (frage_idx === 15) {
     console.log("SPIEL ENDE!");
     score_schwer_text.textContent = "Score: " + score_schwer + " / 15";
+    btn_oe.disabled = true;
+    btn_oe.style.pointerEvents = "none";
     return;
   }
 
@@ -337,7 +341,6 @@ function weiter_schwer() {
   // Neues Bild einfügen
   const neuerPfad = pfad_bilder_ohneName + aktueller_landkreis[0] + pfad_png;
   frage_bild_schwer.src = neuerPfad;
-  // console.log("aktueller_landkreis =", aktueller_landkreis);
 
   // Hinweis
   hinweis_btn.onclick = function(){
@@ -348,11 +351,9 @@ function weiter_schwer() {
     }
   }
 
-
   // Klicken zur Eingabe
   antwort_schwer.onclick = function(){
     eingabe_text = eingabe_schwer.value.toLowerCase();
-    // console.log(eingabe_text);
 
     //Keine Antwort mehr möglich
     eingabe_aufforderung_text.textContent = "";
@@ -386,8 +387,8 @@ function weiter_schwer() {
     if (richtig_falsch_bool) {
       score_schwer++;
     }
-    console.log("richtig_falsch_bool =", richtig_falsch_bool);
-    console.log("score_schwer =", score_schwer);
+    // console.log("richtig_falsch_bool =", richtig_falsch_bool);
+    // console.log("score_schwer =", score_schwer);
 
     // Bild mit Lösung
     const neuerPfad_mitName = pfad_bilder_mitName + aktueller_landkreis[0] + pfad_png;
@@ -411,10 +412,7 @@ function weiter_schwer() {
 
 
 function update_progress_schwer(value, schwierigkeit) {
-  console.log("value 1: ", value);
   value = Math.round(value);
-  console.log("value 2: ", value);
-
   let breite = ( (value) / 15 ) * 100;
 
   if (schwierigkeit === 0) {
