@@ -1,0 +1,310 @@
+.container_anfang {
+  /* width: 100%; */
+  border-radius: 1em;
+  border: 2px solid var(--blau-2);
+  margin-top: -2%;
+  padding: 4%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+/* Container für Kategorienauswahl */
+#container_auswahl {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 80%;
+  margin: 0 auto;
+
+}
+.kateg,
+#kateg_gewaehlt {
+  flex: 1 1 40%;
+  box-sizing: border-box;
+  padding: 1em;
+  margin: 0.5em;
+  text-align: center;
+  max-width: 15em;
+  color: var(--text-clr);
+
+  border-radius: 0.5em;
+
+  border: 4px solid var(--line-clr);
+  background-color: transparent;
+  cursor: pointer;
+}
+.kateg:hover {
+  /* background-color: var(--blau-1); */
+  background-color: var(--hover-clr);
+}
+.kateg.ausgewaehlt {
+  background-color: var(--blau-2);
+  border-color: var(--blau-1);
+  /* color: white; */
+}
+
+
+/* Button weiter */
+#btn_starte_training {
+  color: var(--line-clr);
+  border-radius: .5em;
+  padding: 1.0em 4.0em;
+  
+  border: 4px solid var(--text-clr);
+  background-color: var(--blau-2);
+  
+  width: 80%;
+  max-width: 20em;
+  height: 40%;
+  cursor: pointer;
+  
+  /* white-space: nowrap; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#btn_starte_training {
+  background-color: var(--text-clr);
+}
+#btn_starte_training:hover {
+  background-color: var(--secondary-text-clr);
+}
+
+
+
+
+
+
+/* Eingabe der Anzahl an Vokabeln */
+.eingabe_anzahl_gruppe {
+  position: relative;
+  margin: 2em 0;
+}
+.eingabe_anzahl_gruppe label {
+  position: absolute;
+  top: 50%;
+  left: 0.5em;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #fff;
+  padding: 0 0.5em;
+  pointer-events: none;
+  transition: .5s;
+}
+.eingabe_anzahl_gruppe input {
+  width: 15em;
+  height: 40px;
+  font-size: 16px;
+  color: #fff;
+  padding: 0 1em;
+  background: transparent;
+  border: 1.2px solid #fff;
+  outline: none;
+  border-radius: 0.5em;
+  border: 2px solid white;
+}
+input:focus,
+input:valid {
+    color: var(--blau-2);
+    border: 2px solid var(--blau-2);
+}
+.eingabe_anzahl_gruppe input:focus~label,
+.eingabe_anzahl_gruppe input:valid~label {
+    top: 0;
+    font-size: 12px;
+    color: var(--blau-2);
+    background: var(--base-clr);
+}
+
+
+
+
+
+
+/* Switch */
+.container_switches {
+  display: flex;
+  flex-direction: row;
+  gap: 4em;
+  justify-content: space-between;
+  /* background-color: red; */
+
+  align-items: flex-start;
+}
+.container_switch {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2em 0;
+  width: 6em;
+  /* background-color: green; */
+}
+.switch_sprachrichtung,
+.switch_schwierigkeit {
+  opacity: 0; /* Versteckt das native Checkbox-Element */
+  position: absolute; /* Positioniert es aus dem Fluss des Dokuments */
+}
+.switch_sprachrichtung_lbl,
+.switch_schwierigkeit_lbl {
+  width: 53px;
+  height: 26px;
+  background-color: #ccc;
+  border-radius: 34px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.switch_schwierigkeit_lbl {
+  background-color: var(--blau-2);
+}
+.switch_sprachrichtung_lbl::after,
+.switch_schwierigkeit_lbl::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+/* Aktivierung des Switches */
+.switch_sprachrichtung:checked + .switch_sprachrichtung_lbl {
+  background-color: var(--blau-2);
+}
+.switch_schwierigkeit:checked + .switch_schwierigkeit_lbl {
+  background-color: var(--rot-2);
+}
+.switch_sprachrichtung:checked + .switch_sprachrichtung_lbl::after,
+.switch_schwierigkeit:checked + .switch_schwierigkeit_lbl::after {
+  transform: translateX(26px); /* Verschiebt den Knopf nach rechts */
+}
+#switch_sprachrichtung_text,
+#switch_sschwierigkeit_text {
+  display: flex;
+  text-align: center;
+}
+
+
+
+
+
+
+/* Container Vokabeltrainer */
+.container_vokabeltraining_leicht,
+.container_vokabeltraining_schwer {
+  /* width: 30em; */
+  /* border: 1px solid var(--line-clr); */
+  border-radius: 1em;
+  border: 2px solid var(--blau-2);
+  margin-top: -2%;
+  padding: 4%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+
+
+
+
+
+
+/* Antworten Buttons */
+.container_richt_fal_z1,
+.container_richt_fal_z2 {
+  display: flex;
+  flex-direction: row;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.horiz_linie {
+  width: 109%;
+  /* max-width: 100%; */
+  border: none;
+  border-top: 2px solid var(--blau-2);
+  margin: 2em calc(-1 * min(30px, 7%));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.hide {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
