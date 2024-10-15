@@ -12,11 +12,14 @@ TODO
 
 - Vokabeltraining:
   ANFANG:
-  - Wahl zwischen Leicht und Schwer in einer Reihe mit Switch
   - Switch Bild einfügen für DE->EST und EST->DE
   - unten Kategorie und Anzahl anzeigen und dann nochmal auf spielen klicken, um zu starten
 
   TRAINING LEICHT
+  - EST -> DE funktioniert noch nicht korrekt -> richtige Antwort wird nicht gefunden
+  - Weiter Button verschönern
+  - Richtige Antwort bei klicken der Antworten anzeigen (Grün)
+  - Rechts neben Progressbar einen Button (Kreuz) zum beenden und zurück zur Kategorienauswahl zu kommen
 
   TRAINING SCHWER
   - Progressbar mit x_i / x Anzahl anzeigen
@@ -24,6 +27,7 @@ TODO
   - x zufällige Vokabel aus gewählter Kategorie bereitstellen
   - Vokabeln shuffeln
   - Eingabe -> Richtig/Falsch -> Grün/Rot, Hacken/Kreuz
+  - õ links neben die Eingabe
   - Hinweis -> um 1 weiter aufdecken -> ganz aufdecken bei Antwort Button
   - Weiter zur nächsten Vokabel
   - Ende Score anzeigen
@@ -152,6 +156,11 @@ var antwort_richtig_idx;
 // EventListener
 btn_weiter_leicht.addEventListener("click", weiter_leicht);
 
+antwort_1.addEventListener("click", (e) => pruefe_antwort_leicht(e));
+antwort_2.addEventListener("click", (e) => pruefe_antwort_leicht(e));
+antwort_3.addEventListener("click", (e) => pruefe_antwort_leicht(e));
+antwort_4.addEventListener("click", (e) => pruefe_antwort_leicht(e));
+
 // Label
 var frage_wort_leicht = document.querySelector(".frage_wort_leicht");
 var hinweis_ausgabe = document.getElementById("hinweis_ausgabe");
@@ -186,10 +195,11 @@ var richtig_falsch_bool = false;
 var antwort_laenge = 0;
 var hinweis_idx = 0;
 var hinweis_text = "";
+var score_leicht = 0;
+var score_schwer = 0;
 
 // Prüfe Eingaben am Anfang
 btn_starte_training.addEventListener("click", pruefe_auswahl_kategorien_und_anzahl);
-
 
 // Switch
 var toggle_switch_sprachrichtung = document.getElementById('toggle_switch_sprachrichtung');
@@ -197,12 +207,15 @@ var toggle_switch_schwierigkeit = document.getElementById('toggle_switch_schwier
 var switch_sprachrichtung_text = document.getElementById('switch_sprachrichtung_text');
 var switch_schwierigkeit_text = document.getElementById('switch_schwierigkeit_text');
 
-// schwierigkeit
 // Setze den Anfangszustand des Switches
 toggle_switch_sprachrichtung.checked = false; // Initial auf 'Aus'
 toggle_switch_schwierigkeit.checked = false; // Initial auf 'Aus'
 switch_sprachrichtung_text.textContent = "DE -> EST";
 switch_schwierigkeit_text.textContent = "Leicht";
+
+// Horizontale Linie
+var horizontale_linie_leicht = document.querySelector(".horiz_linie_leicht");
+var horizontale_linie_schwer = document.querySelector(".horiz_linie_schwer");
 
 // Füge einen Event-Listener hinzu, um auf Änderungen zu reagieren
 toggle_switch_sprachrichtung.addEventListener('change', function() {
@@ -253,29 +266,6 @@ function kategorie_gewaehlt(button) {
       }
     }
     console.log("kategorie_idx =", kategorie_idx);
-
-    // switch (kategorie_idx) {
-    //   case 0:
-    //     woerter = vokabeln_zahlen;
-    //     anzahl_vokabeln_maximal = vokabeln_zahlen.length;
-    //     break;
-    //   case 1:
-    //     woerter = vokabeln_tiere;
-    //     anzahl_vokabeln_maximal = vokabeln_tiere;
-    //     break;
-    //   case 2:
-    //     woerter = vokabeln_essen_und_trinken;
-    //     anzahl_vokabeln_maximal = vokabeln_essen_und_trinken.length;
-    //     break;
-    //   case 3:
-    //     woerter = vokabeln_farben;
-    //     anzahl_vokabeln_maximal = vokabeln_farben.length;
-    //     break;
-    // }
-    // console.log("woerter 0:\n", woerter);
-    // console.log("woerter:\n", woerter[0]);
-    // console.log("woerter:\n", woerter[1]);
-    // console.log("woerter:\n", woerter[2]);
 
     eingabe_anzahl.value = vokabelanzahl[kategorie_idx][1];
   }
@@ -339,7 +329,6 @@ function pruefe_auswahl_kategorien_und_anzahl() {
   else {
     error_ausgabe.textContent = "Anzahl an Vokabeln ist zu groß!";
   }
-
 
 
   // Falls alles korrekt war, soll das Vokabeltraining gestartet werden
@@ -421,6 +410,30 @@ function weiter_leicht() {
     return;
   }
 
+  antwort_1.removeAttribute("id");
+  antwort_2.removeAttribute("id");
+  antwort_3.removeAttribute("id");
+  antwort_4.removeAttribute("id");
+  container_vokabeltraining_leicht.removeAttribute("id", "container_spiel_einfach_richtig");
+  container_vokabeltraining_leicht.removeAttribute("id", "container_spiel_einfach_falsch");
+  horizontale_linie_leicht.removeAttribute("id", "horiz_linie_richtig");
+  horizontale_linie_leicht.removeAttribute("id", "horiz_linie_falsch");
+  antwort_1.disabled = false;
+  antwort_2.disabled = false;
+  antwort_3.disabled = false;
+  antwort_4.disabled = false;
+  antwort_1.style.pointerEvents = "auto";
+  antwort_2.style.pointerEvents = "auto";
+  antwort_3.style.pointerEvents = "auto";
+  antwort_4.style.pointerEvents = "auto";
+
+
+
+
+
+
+
+
   console.log("eingabe_anzahl =", eingabe_anzahl.value);
   console.log("wort_idx =", wort_idx);
 
@@ -468,19 +481,74 @@ function weiter_leicht() {
     }
   })
 
-
-
-
-
-
-
-
-
-
   wort_idx++;
   update_progress(wort_idx, 0);
 
 }
+
+
+function pruefe_antwort_leicht(e) {
+  if (e.currentTarget.outerText.trim() === aktuelles_wort_leicht[1].trim()) {
+    // console.log("RICHTIG!");
+    e.currentTarget.setAttribute("id", "btn_antwort_richtig");
+    container_vokabeltraining_leicht.setAttribute("id", "container_spiel_einfach_richtig");
+    horizontale_linie_leicht.setAttribute("id", "horiz_linie_richtig");
+
+    // const neuerPfad_mitName = pfad_bilder_mitName + aktuelles_wort_leicht[0] + pfad_png;
+    // frage_bild.src = neuerPfad_mitName;
+
+    score_leicht++;
+  }
+  else {
+    // console.log("FALSCH!");
+    e.currentTarget.setAttribute("id", "btn_antwort_falsch");
+    container_vokabeltraining_leicht.setAttribute("id", "container_spiel_einfach_falsch");
+    horizontale_linie_leicht.setAttribute("id", "horiz_linie_falsch");
+
+    // const neuerPfad_mitName = pfad_bilder_mitName + aktuelles_wort_leicht[0] + pfad_png;
+    // frage_bild.src = neuerPfad_mitName;
+  }
+
+  antwort_1.disabled = true;
+  antwort_2.disabled = true;
+  antwort_3.disabled = true;
+  antwort_4.disabled = true;
+  antwort_1.style.pointerEvents = "none";
+  antwort_2.style.pointerEvents = "none";
+  antwort_3.style.pointerEvents = "none";
+  antwort_4.style.pointerEvents = "none";
+
+  // const neuerPfad_mitName = pfad_bilder_mitName + aktueller_landkreis[0] + pfad_png;
+  // frage_bild.src = neuerPfad_mitName;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
