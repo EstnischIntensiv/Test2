@@ -404,7 +404,7 @@ function starte_vokabeltraining_leicht() {
 
   // Zufällige Liste
   zuf_liste = Array.from({ length: woerter.length }, (_, i) => i);
-  for (let i = zuf_liste.length - 1; i > 0; i--) {
+  for (let i = zuf_liste.length - 1; i >= 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [zuf_liste[i], zuf_liste[j]] = [zuf_liste[j], zuf_liste[i]]; // Tausche Elemente
   }
@@ -433,12 +433,18 @@ function weiter_leicht() {
 
   // Get 4 Antwortmöglichkeiten
   let restl_woerter = worter_shuffled.filter(item => item !== aktuelles_wort_leicht);
+
+  // Nochmal restl_woerter shuffeln, damit man verschiedene Antwortmöglichkeiten hat
+  for (let i = restl_woerter.length - 1; i >= 0; i--) {
+    const j = Math.floor(Math.random() * (i+1));
+    [restl_woerter[i], restl_woerter[j]] = [restl_woerter[j], restl_woerter[i]];
+  }
+
   restl_woerter = restl_woerter.slice(0,3);
   restl_woerter.push(aktuelles_wort_leicht);
-  // console.log("restl_woerter 1:", restl_woerter);
 
   // Shuffle 4 Antwortmöglichkeiten
-  for (let i = restl_woerter.length - 1; i > 0; i--) {
+  for (let i = restl_woerter.length - 1; i >= 0; i--) {
     const j = Math.floor(Math.random() * (i+1));
     [restl_woerter[i], restl_woerter[j]] = [restl_woerter[j], restl_woerter[i]];
   }

@@ -100,9 +100,9 @@ var btn_landkrspiel_schwer = document.getElementById("btn_schwer");
 var btn_landkr_einfach_weiter = document.getElementById("btn_weiter_einfach");
 var btn_landkr_schwer_weiter = document.getElementById("btn_weiter_schwer");
 
-console.log("btn_landkrspiel_einfach: ", btn_landkrspiel_einfach);
-console.log("btn_landkrspiel_schwer: ", btn_landkrspiel_schwer);
-console.log("btn_landkr_einfach_weiter: ", btn_landkr_einfach_weiter);
+// console.log("btn_landkrspiel_einfach: ", btn_landkrspiel_einfach);
+// console.log("btn_landkrspiel_schwer: ", btn_landkrspiel_schwer);
+// console.log("btn_landkr_einfach_weiter: ", btn_landkr_einfach_weiter);
 
 
 // Bildindex, Score
@@ -142,7 +142,7 @@ function starte_landkr_spiel_einfach() {
 
   // Zufällige Liste
   zuf_liste = Array.from({ length: 15 }, (_, i) => i);
-  for (let i = zuf_liste.length - 1; i > 0; i--) {
+  for (let i = zuf_liste.length - 1; i >= 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [zuf_liste[i], zuf_liste[j]] = [zuf_liste[j], zuf_liste[i]]; // Tausche Elemente
   }
@@ -184,11 +184,19 @@ function weiter_einfach() {
 
   // Get 4 Antwortmöglichkeiten
   let restl_landkreise = shuffledLandkreise.filter(item => item !== aktueller_landkreis);
+  
+
+  // Nochmal restl_landkreise shuffeln, damit man verschiedene Antwortmöglichkeiten hat
+  for (let i = restl_landkreise.length - 1; i >= 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [restl_landkreise[i], restl_landkreise[j]] = [restl_landkreise[j], restl_landkreise[i]]; // Tausche Elemente
+  }
+
   restl_landkreise = restl_landkreise.slice(0,3);
   restl_landkreise.push(aktueller_landkreis);
 
   // Shuffle 4 Antwortmöglichkeiten
-  for (let i = restl_landkreise.length - 1; i > 0; i--) {
+  for (let i = restl_landkreise.length - 1; i >= 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [restl_landkreise[i], restl_landkreise[j]] = [restl_landkreise[j], restl_landkreise[i]]; // Tausche Elemente
   }
@@ -293,7 +301,7 @@ function starte_landkr_spiel_schwer() {
 
   // Zufällige Liste
   zuf_liste = Array.from({ length: 15 }, (_, i) => i);
-  for (let i = zuf_liste.length - 1; i > 0; i--) {
+  for (let i = zuf_liste.length - 1; i >= 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [zuf_liste[i], zuf_liste[j]] = [zuf_liste[j], zuf_liste[i]]; // Tausche Elemente
   }
