@@ -76,15 +76,15 @@ var vokabelanzahl = [
   ["Tiere", vokabeln_tiere.length],
   ["Essen & Trinken", vokabeln_essen_und_trinken.length],
   ["Farben", vokabeln_farben.length],
-  ["Kleidung", 18],
-  ["Möbel & Haushalt", 22],
-  ["Familie & Freunde", 19],
-  ["Bildung", 24],
-  ["Freizeit", 20],
-  ["Wetter", 17],
-  ["Reisen & Transport", 28],
-  ["Politik", 10],
-  ["Zeit & Datum", 14]
+  ["Kleidung", vokabeln_kleidung.length],
+  ["Möbel & Haushalt", vokabeln_moebel_und_haushalt.length],
+  ["Familie & Freunde", vokabeln_familie_und_freunde.length],
+  ["Bildung", 0],
+  ["Freizeit", 0],
+  ["Wetter", 0],
+  ["Reisen & Transport", 0],
+  ["Politik", 0],
+  ["Zeit & Datum", 0]
 ];
 
 
@@ -384,6 +384,18 @@ function starte_vokabeltraining_leicht() {
       woerter = vokabeln_farben;
       anzahl_vokabeln_maximal = vokabeln_farben.length;
       break;
+    case 4:
+      woerter = vokabeln_kleidung;
+      anzahl_vokabeln_maximal = vokabeln_kleidung.length;
+      break;
+    case 5:
+      woerter = vokabeln_moebel_und_haushalt;
+      anzahl_vokabeln_maximal = vokabeln_moebel_und_haushalt.length;
+      break;
+    case 6:
+      woerter = vokabeln_familie_und_freunde;
+      anzahl_vokabeln_maximal = vokabeln_familie_und_freunde.length;
+      break;
   }
   console.log("woerter 0:\n", woerter);
 
@@ -475,9 +487,13 @@ function weiter_leicht() {
   // console.log("aktuelles_wort_leicht =", aktuelles_wort_leicht);
   // Finde richtige Antwort
   antworten.forEach( (antw,i) => {
-    if (antw.querySelector("span").textContent === aktuelles_wort_leicht) {
+    console.log("antw.querySelector(span).textContent =", antw.querySelector("span").textContent);
+    console.log("aktuelles_wort_leicht =", aktuelles_wort_leicht[Math.abs(1-sprachrichtung)].trim());
+    if (antw.querySelector("span").textContent === aktuelles_wort_leicht[Math.abs(1-sprachrichtung)].trim()) {
+      console.log("IN IF");
       antwort_richtig = antw;
       antwort_richtig_idx = i;
+      console.log("antwort_richtig: ", antwort_richtig);
     }
   })
 
@@ -488,7 +504,7 @@ function weiter_leicht() {
 
 
 function pruefe_antwort_leicht(e) {
-  if (e.currentTarget.outerText.trim() === aktuelles_wort_leicht[1].trim()) {
+  if (e.currentTarget.outerText.trim() === aktuelles_wort_leicht[Math.abs(1-sprachrichtung)].trim()) {
     // console.log("RICHTIG!");
     e.currentTarget.setAttribute("id", "btn_antwort_richtig");
     container_vokabeltraining_leicht.setAttribute("id", "container_spiel_einfach_richtig");
@@ -504,6 +520,8 @@ function pruefe_antwort_leicht(e) {
     e.currentTarget.setAttribute("id", "btn_antwort_falsch");
     container_vokabeltraining_leicht.setAttribute("id", "container_spiel_einfach_falsch");
     horizontale_linie_leicht.setAttribute("id", "horiz_linie_falsch");
+
+    antwort_richtig.setAttribute("id", "btn_antwort_richtig");
 
     // const neuerPfad_mitName = pfad_bilder_mitName + aktuelles_wort_leicht[0] + pfad_png;
     // frage_bild.src = neuerPfad_mitName;

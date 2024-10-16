@@ -210,6 +210,7 @@ function weiter_einfach() {
   // Finde richtige Antwort
   antworten.forEach( (antw,i) => {
     if (antw.querySelector("span").textContent === aktueller_landkreis[1]) {
+      console.log("IN IF");
       antwort_richtig = antw;
       antwort_richtig_idx = i;
     }
@@ -239,6 +240,8 @@ function pruefe_antwort_einfach(e) {
     e.currentTarget.setAttribute("id", "btn_antwort_falsch");
     container_spiel_einfach.setAttribute("id", "container_spiel_einfach_falsch");
     horizontale_linie.setAttribute("id", "horiz_linie_falsch");
+
+    antwort_richtig.setAttribute("id", "btn_antwort_richtig");
 
     const neuerPfad_mitName = pfad_bilder_mitName + aktueller_landkreis[0] + pfad_png;
     frage_bild.src = neuerPfad_mitName;

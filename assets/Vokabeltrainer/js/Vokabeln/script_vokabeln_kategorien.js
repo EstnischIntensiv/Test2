@@ -13,13 +13,13 @@ var vokabeln_zahlen = [
   ["zehn", "kümme"],
 ];
 
-// var vokabeln_tiere = [
-//   ["Pinguin", "pingviin"],
-//   ["Hund", "koer"],
-//   ["Katze", "kass"],
-//   ["Fisch", "kala"],
-//   ["Bär", "karu"],
-// ];
+var vokabeln_tiere = [
+  ["Pinguin", "pingviin"],
+  ["Hund", "koer"],
+  ["Katze", "kass"],
+  ["Fisch", "kala"],
+  ["Bär", "karu"],
+];
 
 // var vokabeln_essen_und_trinken = [
 //   ["Wasser", "vesi"],
@@ -152,6 +152,177 @@ var vokabeln_farben = [
   ["hellblau", "helesinine"],
   ["dunkelblau", "tumesinine"]
 ];
+
+
+
+
+var vokabeln_kleidung = [
+  ["Hose", "püksid"],
+  ["Hemd", "särk"],
+  ["T-Shirt", "T-särk"],
+  ["Jacke", "jope"],
+  ["Schuhe", "kingad"],
+  ["Stiefel", "saapad"],
+  ["Socke", "sokk"],
+  ["Mütze", "müts"],
+  ["Handschuhe", "kindad"],
+  ["Schal", "sall"],
+  ["Mantel", "mantel"],
+  ["Pullover", "kampsun"],
+  ["Kleid", "kleit"],
+  ["Rock", "seelik"],
+  ["Bluse", "pluus"],
+  ["Anzug", "ülikond"],
+  ["Krawatte", "lips"],
+  ["Fliege", "kikilips"],
+
+  ["Schlafanzug", "pidžaama"],
+  ["Unterwäsche", "aluspesu"],
+  ["Unterhose", "aluspüks"],
+  ["BH", "rinnahoidja"],
+  ["Jeans", "teksad"],
+  ["Sandalen", "sandaalid"],
+  ["Gürtel", "vöö"],
+  ["Regenjacke", "vihmamantel"],
+  ["Bikini", "bikiinid"],
+  ["Weste", "vest"],
+  ["Sonnenbrille", "päikeseprillid"],
+
+  ["Kapuzenpullover", "kapuutsiga kampsun"],
+  ["Strumpfhose", "sukkpüksid"],
+
+  ["Handtasche", "käekott"],
+  ["Rucksack", "seljakott"],
+  ["Reißverschluss", "lukk"],
+  ["Knopf", "nööp"],
+  ["Schleife", "pael"],
+  ["Regenstiefel", "kummikud"],
+  ["Schürze", "põll"],
+];
+
+
+
+var vokabeln_moebel_und_haushalt = [
+  ["Tisch", "laud"],
+  ["Stuhl", "tool"],
+  ["Sofa", "diivan"],
+  ["Schrank", "kapp"],
+  ["Lampe", "lamp"],
+  ["Teppich", "vaip"],
+  ["Regal", "riiul"],
+  ["Fernseher", "telekas"],
+  ["Buch", "raamat"],
+
+  ["Vorhang", "kardin"],
+  ["Bett", "voodi"],
+  ["Kissen", "padi"],
+  ["Decke", "tekk"],
+  ["Bettwäsche", "voodipesu"],
+  ["Matratze", "madrats"],
+  ["Nachttisch", "öölaud"],
+
+  ["Spiegel", "peegel"],
+  ["Waschmaschine", "pesumasin"],
+  ["Spülmaschine", "nõudepesumasin"],
+  ["Staubsauger", "tolmuimeja"],
+  ["Bügeleisen", "triikraud"],
+  ["Bügelbrett", "triikimislaud"],
+
+  ["Küche", "köök"],
+  ["Ofen", "ahi"],
+  ["Herd", "pliit"],
+  ["Mikrowelle", "mikrolaineahi"],
+  ["Kühlschrank", "külmkapp"],
+  ["Gefrierschrank", "sügavkülmik"],
+  ["Toaster", "röster"],
+  ["Wasserkocher", "veekeetja"],
+  ["Gabel", "kahvel"],
+  ["Messer", "nuga"],
+  ["Löffel", "lusikas"],
+  ["Teller", "taldrik"],
+  ["Tasse", "tass"],
+  ["Glas", "klaas"],
+  ["Pfanne", "pann"],
+  ["Topf", "pott"],
+  ["Schüssel", "kauss"],
+
+  ["Eimer", "ämber"],
+  ["Mülleimer", "prügikast"],
+  ["Besen", "hari"],
+  ["Wischmopp", "mopp"],
+  ["Tuch", "lapp"],
+  ["Handtuch", "käterätik"],
+];
+
+
+
+
+var vokabeln_familie_und_freunde = [
+  ["Mutter", "ema"],
+  ["Mama", "eme"],
+  ["Vater", "isa"],
+  ["Papi", "isi"],
+  
+  ["Eltern", "vanemad"],
+  ["Schwester", "õde"],
+  ["Bruder", "vend"],
+
+  ["Tochter", "tütar"],
+  ["Sohn", "poeg"],
+
+  ["Großmutter", "vanaema"],
+  ["Großvater", "vanaisa"],
+  ["Enkel", "lapselaps"],
+
+  ["Onkel", "onu"],
+  ["Tante", "täd"],
+
+  ["Cousin", "nõbu"],
+  ["Neffe", "vennapoeg / õepoeg"],
+  ["Nichte", "vennatütar / õetütar"],
+  
+  ["Schwiegermutter", "ämm"],
+  ["Schwiegervater", "äi"],
+
+  ["Pate", "ristiisa"],
+  ["Patin", "ristiema"],
+
+  ["Stiefmutter", "kasuema"],
+  ["Stiefvater", "kasuisa"],
+  ["Stiefbruder", "kasuvend"],
+  ["Stiefschwester", "kasusõde"],
+
+  ["Freund", "sõber"],
+  ["Freundin", "sõbranna"],
+
+  ["Kollege", "kolleeg"],
+  ["Nachbar", "naaber"],
+  ["Bekannter", "tuttav"],
+
+  ["Verwandte", "sugulane"],
+  ["Zwillinge", "kaksikud"],
+  ["Drillinge", "kolmikud"],
+  ["Baby", "beebi"],
+
+  ["Kind", "laps"],
+];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
