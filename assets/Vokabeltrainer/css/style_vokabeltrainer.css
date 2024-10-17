@@ -330,6 +330,7 @@ input:valid {
   font-weight: bold;
   color: var(--text-clr);
 }
+.horiz_linie,
 .horiz_linie_leicht,
 .horiz_linie_schwer {
   width: 109%;
@@ -368,6 +369,10 @@ input:valid {
 
 
 
+#error_ausgabe {
+  min-height: 16px;
+  display: inline-block;
+}
 
 
 
