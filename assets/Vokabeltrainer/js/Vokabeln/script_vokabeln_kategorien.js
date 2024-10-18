@@ -1,4 +1,4 @@
-
+// https://flashcardo.com/de/estnisch-lernkarten/
 
 var vokabeln_zahlen = [
   ["eins", "üks"],
@@ -306,6 +306,157 @@ var vokabeln_familie_und_freunde = [
 
   ["Kind", "laps"],
 ];
+
+
+
+var vokabeln_schule_und_bildung = [
+  ["Schule", "kool"],
+  ["Lehrer", "õpetaja"],
+  ["Schüler", "õpilane"],
+  ["Klasse", "klass"],
+  ["Klassenraum", "klassiruum"],
+  ["Direktor", "direktor"],
+  ["Fach", "aine"],
+  ["Mathematik", "matemaatika"],
+  ["Biologie", "bioloogia"],
+  ["Chemie", "keemia"],
+  ["Physik", "füüsika"],
+  ["Geschichte", "ajalugu"],
+  ["Erdkunde", "geograafia"],
+  ["Kunst", "kunst"],
+  ["Musik", "muusika"],
+  ["Sport", "sport"],
+
+  ["Englisch", "inglise keel"],
+  ["Deutsch", "saksa keel"],
+
+  ["Hausaufgaben", "kodutööd"],
+  ["Test", "test"],
+
+  ["Heft", "vihik"],
+  ["Stift", "pliiats"],
+  ["Lineal", "joonlaud"],
+  ["Zeugnis", "tunnistus"],
+  ["Note", "hinne"],
+  ["Pause", "paus"],
+
+  ["Grundschule", "algkool"],
+  ["Hochschule", "kõrgkool"],
+  ["Universität", "ülikool"],
+
+  ["Student", "üliõpilane"],
+  ["Semester", "semester"],
+
+  ["Bibliothek", "raamatukogu"],
+  ["Diplom", "diplom"],
+  ["Bachelor", "bakalaureus"],
+  ["Master", "magister"],
+  ["Doktor", "doktor"],
+  ["Bildung", "haridus"],
+];
+
+
+
+var vokabeln_freizeit = [
+  ["Freizeit", "vabaaeg"],
+  ["Hobby", "hobi"],
+  ["Sport", "sport"],
+
+  ["tanzen", "tantsima"],
+  ["schwimmen", "ujuma"],
+  ["joggen", "jooksma"],
+  ["spazieren", "jalutama"],
+  ["wandern", "matkama"],
+  ["lesen", "lugema"],
+  ["singen", "laulma"],
+  ["malen", "maalima"],
+  ["reisen", "reisima"],
+  ["malen", "maalima"],
+  ["kochen", "kokkama"],
+  ["backen", "küpsetama"],
+  ["grillen", "grillima"],
+  ["spielen", "mängima"],
+
+  ["Buch", "raamat"],
+  ["Kino", "kino"],
+  ["Film", "film"],
+  ["Theater", "teater"],
+  ["Konzert", "kontsert"],
+  ["Musik", "muusika"],
+
+
+  ["Instrument", "instrument"],
+  ["Gitarre", "kitarr"],
+  ["Klavier", "klaver"],
+
+
+  ["Urlaub", "puhkus"],
+  ["Strand", "rand"],
+  ["Berg", "mägi"],
+  ["Meer", "meri"],
+  ["Museum", "muuseum"],
+  ["Ausstellung", "näitus"],
+  ["Handarbeit", "käsitöö"],
+
+
+  ["Picknick", "piknik"],
+  ["Brettspiel", "lauamäng"],
+  ["Karten spielen", "kaardimäng"],
+  ["Videospiel", "videomäng"],
+  ["Schach", "male"],
+];
+
+
+
+
+var vokabeln_wetter = [
+  ["Wetter", "ilm"],
+  ["Temperatur", "temperatuur"],
+  ["Grad", "kraad"],
+
+  ["Sonne", "päike"],
+  ["Mond", "kuu"],
+  ["Stern", "täht"],
+
+  ["Regen", "vihm"],
+  ["Schnee", "lumi"],
+  ["Wind", "tuul"],
+  ["Wolke", "pilv"],
+  ["Nebel", "udu"],
+  ["Gewitter", "äike"],
+  ["Blitz", "välk"],
+  ["Donner", "mürin"],
+  ["Hagel", "rahe"],
+  ["Sturm", "torm"],
+  ["Eis", "jää"],
+  ["Sturm", "torm"],
+
+  ["Sommer", "suvi"],
+  ["Herbst", "sügis"],
+  ["Winter", "talv"],
+  ["Frühling", "kevad"],
+
+  ["heiß", "kuumu"],
+  ["kalt", "külm"],
+  ["warm", "soe"],
+  ["kühl", "jahe"],
+  ["feucht", "niiske"],
+  ["trocken", "kuiv"],
+  ["glatt", "libe"],
+
+
+  ["Sonnenaufgang", "päikesetõus"],
+  ["Sonnenuntergang", "päikeseloojang"],
+  ["Regenbogen", "vikerkaar"],
+];
+
+
+
+
+
+
+
+
 
 
 

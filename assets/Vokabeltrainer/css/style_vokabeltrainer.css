@@ -254,6 +254,7 @@ input:valid {
   padding: 0.5em;
   border: 2px solid var(--blau-2);
   border-radius: 1em;
+  margin: 1.0em;
 }
 
 /* Antworten Buttons */
@@ -337,7 +338,7 @@ input:valid {
   /* max-width: 100%; */
   border: none;
   border-top: 2px solid var(--blau-2);
-  margin: 2em calc(-1 * min(30px, 7%));
+  margin: 1em calc(-1 * min(30px, 7%));
 }
 #horiz_linie_richtig {
   border-color: var(--gruen-2);
@@ -371,6 +372,7 @@ input:valid {
 
 #error_ausgabe {
   min-height: 16px;
+  color: var(--rot-2);
   display: inline-block;
 }
 

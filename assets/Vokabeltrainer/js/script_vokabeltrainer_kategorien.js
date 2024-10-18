@@ -16,9 +16,7 @@ TODO
   - unten Kategorie und Anzahl anzeigen und dann nochmal auf spielen klicken, um zu starten
 
   TRAINING LEICHT
-  - EST -> DE funktioniert noch nicht korrekt -> richtige Antwort wird nicht gefunden
   - Weiter Button verschönern
-  - Richtige Antwort bei klicken der Antworten anzeigen (Grün)
   - Rechts neben Progressbar einen Button (Kreuz) zum beenden und zurück zur Kategorienauswahl zu kommen
 
   TRAINING SCHWER
@@ -37,40 +35,6 @@ TODO
 
 
 
-
-
-// var vokabeln_tiere = [
-//   ["Pinguin", "pingviin"],
-//   ["Hund", "koer"],
-//   ["Katze", "kass"],
-//   ["Fisch", "kala"],
-//   ["Bär", "karu"],
-//   ["Wolf", "hunt"],
-//   ["Huhn", "kana"],
-//   ["Schaf", "lammas"],
-//   ["Kuh", "lehm"],
-//   ["Elefant", "elevant"],
-//   ["Maus", "hiir"],
-//   ["Eichhörnchen", "orav"],
-//   ["Igel", "siil"],
-//   ["Pferd", "hobune"],
-//   ["Löwe", "lõvi"],
-//   ["Tiger", "tiiger"],
-//   ["Affe", "ahv"],
-//   ["Giraffe", "kaelkirjak"],
-//   ["Hase", "jänes"],
-//   ["Ratte", "rott"],
-//   ["Vogel", "lind"],
-//   ["Esel", "eesel"],
-//   ["Ente", "part"],
-//   ["Gans", "hani"],
-//   ["Schlange", "madu"],
-//   ["Delfin", "delfiin"],
-//   ["Tintenfisch", "kaheksajalg"],
-//   ["Biene", "mesilane"],
-//   ["Ameise", "sipelgas"]
-// ];
-
 var vokabelanzahl = [
   ["Zahlen", vokabeln_zahlen.length],
   ["Tiere", vokabeln_tiere.length],
@@ -79,9 +43,9 @@ var vokabelanzahl = [
   ["Kleidung", vokabeln_kleidung.length],
   ["Möbel & Haushalt", vokabeln_moebel_und_haushalt.length],
   ["Familie & Freunde", vokabeln_familie_und_freunde.length],
-  ["Bildung", 0],
-  ["Freizeit", 0],
-  ["Wetter", 0],
+  ["Schule & Bildung", vokabeln_schule_und_bildung.length],
+  ["Freizeit", vokabeln_freizeit.length],
+  ["Wetter", vokabeln_wetter.length],
   ["Reisen & Transport", 0],
   ["Politik", 0],
   ["Zeit & Datum", 0]
@@ -197,6 +161,7 @@ var hinweis_idx = 0;
 var hinweis_text = "";
 var score_leicht = 0;
 var score_schwer = 0;
+var score_leicht_text = document.getElementById("score_leicht");
 
 // Prüfe Eingaben am Anfang
 btn_starte_training.addEventListener("click", pruefe_auswahl_kategorien_und_anzahl);
@@ -265,7 +230,6 @@ function kategorie_gewaehlt(button) {
         break;
       }
     }
-    console.log("kategorie_idx =", kategorie_idx);
 
     eingabe_anzahl.value = vokabelanzahl[kategorie_idx][1];
   }
@@ -396,6 +360,18 @@ function starte_vokabeltraining_leicht() {
       woerter = vokabeln_familie_und_freunde;
       anzahl_vokabeln_maximal = vokabeln_familie_und_freunde.length;
       break;
+    case 7:
+      woerter = vokabeln_schule_und_bildung;
+      anzahl_vokabeln_maximal = vokabeln_schule_und_bildung.length;
+      break;
+    case 8:
+      woerter = vokabeln_freizeit;
+      anzahl_vokabeln_maximal = vokabeln_freizeit.length;
+      break;
+    case 9:
+      woerter = vokabeln_wetter;
+      anzahl_vokabeln_maximal = vokabeln_wetter.length;
+      break;
   }
   console.log("woerter 0:\n", woerter);
 
@@ -418,6 +394,7 @@ function starte_vokabeltraining_leicht() {
 
 function weiter_leicht() {
   if (wort_idx === parseInt(eingabe_anzahl.value)) {
+    score_leicht_text.textContent = "Score: " + score_leicht + " / " + anzahl_vokabeln;
     console.log("ENDE");
     return;
   }
