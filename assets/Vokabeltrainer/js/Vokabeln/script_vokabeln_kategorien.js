@@ -453,14 +453,157 @@ var vokabeln_wetter = [
 
 
 
+var vokabeln_reisen_und_transport = [
+  ["Reise", "reis"],
+  ["Urlaub", "puhkus"],
+
+  ["Flughafen", "lennujaam"],
+  ["Flugzeug", "lennuk"],
+  ["Pilot", "piloot"],
+  ["Abfahrt", "väljumine"],
+  ["Ankunft", "saabumine"],
+
+  ["Zug", "rong"],
+  ["Straßenbahn", "tramm"],
+  ["Bus", "buss"],
+  ["Bahnhof", "raudteejaam"],
+  ["Busbahnhof", "bussijaam"],
+  ["Station", "jaam"],
+
+  ["Taxi", "taksi"],
+  ["Auto", "auto"],
+  ["Fahrrad", "jalgratas"],
+  ["Lastwagen", "veoauto"],
+  ["Motorrad", "mootorratas"],
+  ["U-Bahn", "metroo"],
+
+  ["Schiff", "laev"],
+  ["Boot", "paat"],
+  ["Fähre", "praam"],
+  ["Hafen", "sadam"],
+
+  ["Gepäck", "pagas"],
+  ["Koffer", "kohver"],
+  ["Rucksack", "seljakott"],
+
+  ["Pass", "pass"],
+  ["Ticket", "pilet"],
+  ["Reisebüro", "reisibüroo"],
+
+  ["Sitzplatz", "istekoht"],
+  ["Karte", "kaart"],
+  
+  ["Hotel", "hotell"],
+  ["Campingplatz", "telkimisplats"],
+  ["Buchung", "broneering"],
+  ["Reisepasskontrolle", "passikontroll"],
+  ["Zoll", "toll"],
+  ["Sicherheitskontrolle", "turvakontroll"],
+  ["Verspätung", "hilinemine"]
+];
 
 
 
 
+var vokabeln_politik = [
+  ["Politik", "poliitika"],
+
+  ["Regierung", "valitsus"],
+  ["Parlament", "parlament"],
+  ["Kanzler", "kantsler"],
+  ["Präsident", "president"],
+  ["Minister", "minister"],
+  ["Premierminister", "peaminister"],
+  ["Bundeskanzler", "liidukantsler"],
+
+  ["Demokratie", "demokraatia"],
+  ["Diktatur", "diktatuur"],
+  ["Republik", "vabariik"],
+  ["Monarchie", "monarhia"],
+  ["Diplomatie", "diplomaatia"],
+  ["Reform", "reform"],
+  ["Debatte", "debatt"],
+  ["Freiheit", "vabadus"],
+  ["Gleichheit", "võrdsus"],
+  ["Justiz", "kohtusüsteem"],
+  ["Korruption", "korruptsioon"],
+
+  ["Verfassung", "põhiseadus"],
+  ["Gesetz", "seadus"],
+  ["Wahl", "valimised"],
+  ["Stimme", "hääl"],
+  ["Wähler", "valija"],
+
+  ["Opposition", "opositsioon"],
+  ["Koalition", "koalitsioon"],
+  ["Partei", "partei"],
+
+  ["Senat", "senat"],
+  ["Europäische Union", "Euroopa Liit"],
+  ["Botschaft", "saatkond"],
+
+  ["Steuer", "maks"],
+  ["Wirtschaft", "majandus"],
+
+];
 
 
 
 
+var vokabeln_zeit_und_datum = [
+  ["Zeit", "aeg"],
+  ["Datum", "kuupäev"],
+  ["Tag", "päev"],
+  ["Woche", "nädal"],
+  ["Monat", "kuu"],
+  ["Jahr", "aasta"],
+  ["Sekunde", "sekund"],
+  ["Minute", "minut"],
+  ["Stunde", "tund"],
+  ["Kalender", "kalender"],
+  ["Uhr", "kell"],
+
+  ["Morgen", "hommik"],
+  ["Mittag", "keskpäev"],
+  ["Nachmittag", "pärastlõuna"],
+  ["Abend", "õhtu"],
+  ["Nacht", "öö"],
+  ["Mitternacht", "kesköö"],
+
+  ["Frühling", "kevad"],
+  ["Sommer", "suvi"],
+  ["Herbst", "sügis"],
+  ["Winter", "talv"],
+
+  ["Montag", "esmaspäev"],
+  ["Dienstag", "teisipäev"],
+  ["Mittwoch", "kolmapäev"],
+  ["Donnerstag", "neljapäev"],
+  ["Freitag", "reede"],
+  ["Samstag", "laupäev"],
+  ["Sonntag", "pühapäev"],
+
+  ["Januar", "jaanuar"],
+  ["Februar", "veebruar"],
+  ["März", "märts"],
+  ["April", "aprill"],
+  ["Mai", "mai"],
+  ["Juni", "juuni"],
+  ["Juli", "juuli"],
+  ["August", "august"],
+  ["September", "september"],
+  ["Oktober", "oktoober"],
+  ["November", "november"],
+  ["Dezember", "detsember"],
+
+
+  ["gestern", "eile"],
+  ["heute", "täna"],
+  ["morgen", "homme"],
+  ["früh", "vara"],
+  ["spät", "hilja"],
+  ["pünktlich", "täpselt"],
+];
 
 
 

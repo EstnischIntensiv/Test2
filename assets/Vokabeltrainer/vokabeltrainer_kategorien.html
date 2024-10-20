@@ -91,17 +91,42 @@
 
     <hr class="horiz_linie_leicht">
 
-    <div id="container_ende_leicht">
-      <button id="btn_weiter_leicht">Weiter</button>
-      <label id="score_leicht"></label>
+    <div class="container_unten_leicht">
+      <div class="container_ueberspringen_loesung">
+        <button class="btn_ueberspringen_leicht">Überspringen</button>
+      </div>
+      <div class="container_prüefen_weiter">
+        <button class="btn_weiter_leicht">Prüfen</button>
+      </div>
     </div>
 
+
+
+    <div class="container_ende_leicht hide">
+      <label id="score_leicht"></label>
+    </div>
     
   </div>
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 
   <!-- HIER BEGINNT DAS VOKABELTRAINING SCHWER -->
@@ -127,6 +152,9 @@
     <div class="container_antworten_hinweis">
       <button class="btn_hinweis">Hinweis</button>
       <button class="btn_antworten">Antworten</button>
+      <button id="btn_sprecher_leicht">
+        <svg class="icon"><use xlink:href="icons/sprite_1.svg#speaker"></use></svg>
+      </button>
     </div>
 
   </div>

@@ -490,28 +490,16 @@ body{
 
 
 
-
-
 .icon {
-  width: 26px;
-  height: 26px;
-}
-
-.icon_leiste {
-  width: 24px;
-  height: 24px;
+  width: 2em;
+  height: 2em;
 }
 .icon_pfeil {
-  width: 24px;
-  height: 24px;
+  width: 1.8em;
+  height: 1.8em;
 }
 .icon_pfeil use{
   fill: var(--icon-farbe);
-}
-
-.icon_1 {
-  width: 26px;
-  height: 26px;
 }
 
 

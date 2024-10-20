@@ -46,9 +46,9 @@ var vokabelanzahl = [
   ["Schule & Bildung", vokabeln_schule_und_bildung.length],
   ["Freizeit", vokabeln_freizeit.length],
   ["Wetter", vokabeln_wetter.length],
-  ["Reisen & Transport", 0],
-  ["Politik", 0],
-  ["Zeit & Datum", 0]
+  ["Reisen & Transport", vokabeln_reisen_und_transport.length],
+  ["Politik", vokabeln_politik.length],
+  ["Zeit & Datum", vokabeln_zeit_und_datum.length]
 ];
 
 
@@ -107,8 +107,9 @@ var container_vokabeltraining_schwer = document.querySelector(".container_vokabe
 var btn_starte_training = document.getElementById("btn_starte_training");
 var btn_kategorien = document.getElementsByClassName("kateg");
 var hinweis_btn = document.querySelector(".btn_hinweis");
-var btn_weiter_leicht = document.getElementById("btn_weiter_leicht");
-var btn_weiter_schwer = document.getElementById("btn_weiter_schwer");
+var btn_weiter_leicht = document.querySelector(".btn_weiter_leicht");
+var btn_weiter_schwer = document.querySelector(".btn_weiter_schwer");
+var btn_ueberspringen_leicht = document.querySelector(".btn_ueberspringen_leicht");
 var antwort_1 = document.querySelector(".btn_antwort_1");
 var antwort_2 = document.querySelector(".btn_antwort_2");
 var antwort_3 = document.querySelector(".btn_antwort_3");
@@ -119,6 +120,7 @@ var antwort_richtig_idx;
 
 // EventListener
 btn_weiter_leicht.addEventListener("click", weiter_leicht);
+btn_ueberspringen_leicht.addEventListener("click", ueberspringen_leicht);
 
 antwort_1.addEventListener("click", (e) => pruefe_antwort_leicht(e));
 antwort_2.addEventListener("click", (e) => pruefe_antwort_leicht(e));
@@ -372,6 +374,18 @@ function starte_vokabeltraining_leicht() {
       woerter = vokabeln_wetter;
       anzahl_vokabeln_maximal = vokabeln_wetter.length;
       break;
+    case 10:
+      woerter = vokabeln_reisen_und_transport;
+      anzahl_vokabeln_maximal = vokabeln_reisen_und_transport.length;
+      break;
+    case 11:
+      woerter = vokabeln_politik;
+      anzahl_vokabeln_maximal = vokabeln_politik.length;
+      break;
+    case 12:
+      woerter = vokabeln_zeit_und_datum;
+      anzahl_vokabeln_maximal = vokabeln_zeit_und_datum.length;
+      break;
   }
   console.log("woerter 0:\n", woerter);
 
@@ -390,6 +404,56 @@ function starte_vokabeltraining_leicht() {
 
   weiter_leicht();
 }
+
+
+
+function ueberspringen_leicht() {
+  console.log("ÜBERSPRINGEN");
+
+  aktuelles_wort_leicht = worter_shuffled[wort_idx]
+  frage_wort_leicht.textContent = aktuelles_wort_leicht[Math.abs(sprachrichtung)];
+
+  // Get 4 Antwortmöglichkeiten
+  let restl_woerter = worter_shuffled.filter(item => item !== aktuelles_wort_leicht);
+
+  // Nochmal restl_woerter shuffeln, damit man verschiedene Antwortmöglichkeiten hat
+  for (let i = restl_woerter.length - 1; i >= 0; i--) {
+    const j = Math.floor(Math.random() * (i+1));
+    [restl_woerter[i], restl_woerter[j]] = [restl_woerter[j], restl_woerter[i]];
+  }
+  restl_woerter = restl_woerter.slice(0,3);
+  restl_woerter.push(aktuelles_wort_leicht);
+
+  // Shuffle 4 Antwortmöglichkeiten
+  for (let i = restl_woerter.length - 1; i >= 0; i--) {
+    const j = Math.floor(Math.random() * (i+1));
+    [restl_woerter[i], restl_woerter[j]] = [restl_woerter[j], restl_woerter[i]];
+  }
+  console.log("restl_woerter =", restl_woerter);
+
+  // Antwortmöglichkeiten anzeigen auf Buttons
+  antwort_1.querySelector("span").textContent = restl_woerter[0][Math.abs(1-sprachrichtung)];
+  antwort_2.querySelector("span").textContent = restl_woerter[1][Math.abs(1-sprachrichtung)];
+  antwort_3.querySelector("span").textContent = restl_woerter[2][Math.abs(1-sprachrichtung)];
+  antwort_4.querySelector("span").textContent = restl_woerter[3][Math.abs(1-sprachrichtung)];
+
+  // Finde richtige Antwort
+  antworten.forEach( (antw,i) => {
+    console.log("antw.querySelector(span).textContent =", antw.querySelector("span").textContent);
+    console.log("aktuelles_wort_leicht =", aktuelles_wort_leicht[Math.abs(1-sprachrichtung)].trim());
+    if (antw.querySelector("span").textContent === aktuelles_wort_leicht[Math.abs(1-sprachrichtung)].trim()) {
+      console.log("IN IF");
+      antwort_richtig = antw;
+      antwort_richtig_idx = i;
+      console.log("antwort_richtig: ", antwort_richtig);
+    }
+  })
+
+  wort_idx++;
+  update_progress(wort_idx, 0);
+}
+
+
 
 
 function weiter_leicht() {
@@ -415,10 +479,9 @@ function weiter_leicht() {
   antwort_2.style.pointerEvents = "auto";
   antwort_3.style.pointerEvents = "auto";
   antwort_4.style.pointerEvents = "auto";
-
-
-
-
+  btn_weiter_leicht.disabled = true;
+  btn_weiter_leicht.style.pointerEvents = "none";
+  btn_weiter_leicht.removeAttribute("id", "btn_weiter_leicht_drueckbar");
 
 
 
@@ -441,7 +504,6 @@ function weiter_leicht() {
     const j = Math.floor(Math.random() * (i+1));
     [restl_woerter[i], restl_woerter[j]] = [restl_woerter[j], restl_woerter[i]];
   }
-
   restl_woerter = restl_woerter.slice(0,3);
   restl_woerter.push(aktuelles_wort_leicht);
 
@@ -450,7 +512,6 @@ function weiter_leicht() {
     const j = Math.floor(Math.random() * (i+1));
     [restl_woerter[i], restl_woerter[j]] = [restl_woerter[j], restl_woerter[i]];
   }
-
   console.log("restl_woerter =", restl_woerter);
 
   // Antwortmöglichkeiten anzeigen auf Buttons
@@ -459,9 +520,6 @@ function weiter_leicht() {
   antwort_3.querySelector("span").textContent = restl_woerter[2][Math.abs(1-sprachrichtung)];
   antwort_4.querySelector("span").textContent = restl_woerter[3][Math.abs(1-sprachrichtung)];
 
-  // console.log("restl_woerter 2:", restl_woerter);
-
-  // console.log("aktuelles_wort_leicht =", aktuelles_wort_leicht);
   // Finde richtige Antwort
   antworten.forEach( (antw,i) => {
     console.log("antw.querySelector(span).textContent =", antw.querySelector("span").textContent);
@@ -480,15 +538,15 @@ function weiter_leicht() {
 }
 
 
+
+
+
 function pruefe_antwort_leicht(e) {
   if (e.currentTarget.outerText.trim() === aktuelles_wort_leicht[Math.abs(1-sprachrichtung)].trim()) {
     // console.log("RICHTIG!");
     e.currentTarget.setAttribute("id", "btn_antwort_richtig");
     container_vokabeltraining_leicht.setAttribute("id", "container_spiel_einfach_richtig");
     horizontale_linie_leicht.setAttribute("id", "horiz_linie_richtig");
-
-    // const neuerPfad_mitName = pfad_bilder_mitName + aktuelles_wort_leicht[0] + pfad_png;
-    // frage_bild.src = neuerPfad_mitName;
 
     score_leicht++;
   }
@@ -513,10 +571,10 @@ function pruefe_antwort_leicht(e) {
   antwort_3.style.pointerEvents = "none";
   antwort_4.style.pointerEvents = "none";
 
-  // const neuerPfad_mitName = pfad_bilder_mitName + aktueller_landkreis[0] + pfad_png;
-  // frage_bild.src = neuerPfad_mitName;
-
-
+  btn_weiter_leicht.setAttribute("id", "btn_weiter_leicht_drueckbar");
+  btn_weiter_leicht.disabled = false;
+  btn_weiter_leicht.style.pointerEvents = "auto";
+  btn_weiter_leicht.textContent = "Prüfen";
 
 }
 
