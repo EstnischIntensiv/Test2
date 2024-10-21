@@ -18,6 +18,10 @@ TODO
   TRAINING LEICHT
   - Weiter Button verschönern
   - Rechts neben Progressbar einen Button (Kreuz) zum beenden und zurück zur Kategorienauswahl zu kommen
+  - Am Ende soll Score korrekten Score anzeigen
+  - TTS ausprobieren
+  - Mit Doppelklick kann man auch eine Antwort auswählen
+
 
   TRAINING SCHWER
   - Progressbar mit x_i / x Anzahl anzeigen
@@ -102,30 +106,41 @@ kategorienButtons.forEach(function(button) {
 var container_anfang = document.querySelector(".container_anfang");
 var container_vokabeltraining_leicht = document.querySelector(".container_vokabeltraining_leicht");
 var container_vokabeltraining_schwer = document.querySelector(".container_vokabeltraining_schwer");
+var container_unten_leicht = document.querySelector(".container_unten_leicht");
+var container_ende_leicht = document.querySelector(".container_ende_leicht");
 
 // Button
 var btn_starte_training = document.getElementById("btn_starte_training");
 var btn_kategorien = document.getElementsByClassName("kateg");
-var hinweis_btn = document.querySelector(".btn_hinweis");
+var btn_hinweis = document.querySelector(".btn_hinweis");
 var btn_weiter_leicht = document.querySelector(".btn_weiter_leicht");
+var btn_pruefen_leicht = document.querySelector(".btn_weiter_leicht");
 var btn_weiter_schwer = document.querySelector(".btn_weiter_schwer");
 var btn_ueberspringen_leicht = document.querySelector(".btn_ueberspringen_leicht");
 var antwort_1 = document.querySelector(".btn_antwort_1");
 var antwort_2 = document.querySelector(".btn_antwort_2");
 var antwort_3 = document.querySelector(".btn_antwort_3");
 var antwort_4 = document.querySelector(".btn_antwort_4");
+var btn_antwort_gegeben = document.getElementById("btn_antwort_gegeben");
 var antworten = [antwort_1, antwort_2, antwort_3, antwort_4];
+var antwort_gegeben;
 var antwort_richtig;
 var antwort_richtig_idx;
 
 // EventListener
-btn_weiter_leicht.addEventListener("click", weiter_leicht);
+// btn_weiter_leicht.addEventListener("click", weiter_leicht);
+btn_pruefen_leicht.addEventListener("click", pruefen_weiter_antwort_leicht_2);
 btn_ueberspringen_leicht.addEventListener("click", ueberspringen_leicht);
 
-antwort_1.addEventListener("click", (e) => pruefe_antwort_leicht(e));
-antwort_2.addEventListener("click", (e) => pruefe_antwort_leicht(e));
-antwort_3.addEventListener("click", (e) => pruefe_antwort_leicht(e));
-antwort_4.addEventListener("click", (e) => pruefe_antwort_leicht(e));
+// antwort_1.addEventListener("click", (e) => pruefe_antwort_leicht(e));
+// antwort_2.addEventListener("click", (e) => pruefe_antwort_leicht(e));
+// antwort_3.addEventListener("click", (e) => pruefe_antwort_leicht(e));
+// antwort_4.addEventListener("click", (e) => pruefe_antwort_leicht(e));
+
+antwort_1.addEventListener("click", (e) => antwort_setzen(e));
+antwort_2.addEventListener("click", (e) => antwort_setzen(e));
+antwort_3.addEventListener("click", (e) => antwort_setzen(e));
+antwort_4.addEventListener("click", (e) => antwort_setzen(e));
 
 // Label
 var frage_wort_leicht = document.querySelector(".frage_wort_leicht");
@@ -155,7 +170,8 @@ var worter_shuffled;
 var wort_idx = 0;
 var aktuelles_wort_leicht = "";
 var aktuelles_wort_schwer = "";
-var wort_idx = 0;
+var antwort_gegeben_text_leicht = "";
+
 var eingabe_text = "";
 var richtig_falsch_bool = false;
 var antwort_laenge = 0;
@@ -251,7 +267,7 @@ function kategorie_gewaehlt(button) {
 
 // Prüfe Eingaben der Auswahl und Anzahl
 function pruefe_auswahl_kategorien_und_anzahl() {
-  console.log("= = = = = = ANFANG = = = = = =")
+  // console.log("= = = = = = ANFANG = = = = = =")
   // console.log("starte_vokabeltraining_pruefen");
 
   // Variablen initialisieren
@@ -313,7 +329,7 @@ function pruefe_auswahl_kategorien_und_anzahl() {
     }
   }
 
-  console.log("= = = = = = ENDE = = = = = =")
+  // console.log("= = = = = = ENDE = = = = = =")
 }
 
 
@@ -330,7 +346,7 @@ function pruefe_auswahl_kategorien_und_anzahl() {
 
 // HIER BEGINNT DAS LEICHTE VOKABELTRAINING
 function starte_vokabeltraining_leicht() {
-  console.log("Hier beginnt der leichte Vokabeltrainer.");
+  // console.log("Hier beginnt der leichte Vokabeltrainer.");
 
 
   switch (kategorie_idx) {
@@ -387,10 +403,15 @@ function starte_vokabeltraining_leicht() {
       anzahl_vokabeln_maximal = vokabeln_zeit_und_datum.length;
       break;
   }
-  console.log("woerter 0:\n", woerter);
+  // console.log("woerter 0:\n", woerter);
+  // console.log("woerter.length =", woerter.length);
 
-  console.log("woerter.length =", woerter.length);
+  // value = 0;
+  // let breite = ( (1) / eingabe_anzahl.value ) * 100;
+  // document.querySelector(".progress_fuellen_leicht").style.width = `${breite}%`;
+  // document.querySelector(".progress_text_leicht").textContent = (wort_idx) + " / " + eingabe_anzahl.value;
 
+  update_progress(wort_idx, 0);
 
 
   // Zufällige Liste
@@ -400,15 +421,168 @@ function starte_vokabeltraining_leicht() {
     [zuf_liste[i], zuf_liste[j]] = [zuf_liste[j], zuf_liste[i]]; // Tausche Elemente
   }
   worter_shuffled = zuf_liste.map(index => woerter[index]);
-  // console.log("worter_shuffled:\n", worter_shuffled);
 
-  weiter_leicht();
+  // weiter_leicht();
+  vokabel_aufsetzen();
 }
 
 
 
+
+
+
+function vokabel_aufsetzen() {
+  // Aktuelles Wort
+  aktuelles_wort_leicht = worter_shuffled[wort_idx]
+  frage_wort_leicht.textContent = aktuelles_wort_leicht[Math.abs(sprachrichtung)];
+
+  // Get 4 Antwortmöglichkeiten
+  let restl_woerter = worter_shuffled.filter(item => item !== aktuelles_wort_leicht);
+
+  // Nochmal restl_woerter shuffeln, damit man verschiedene Antwortmöglichkeiten hat
+  for (let i = restl_woerter.length - 1; i >= 0; i--) {
+    const j = Math.floor(Math.random() * (i+1));
+    [restl_woerter[i], restl_woerter[j]] = [restl_woerter[j], restl_woerter[i]];
+  }
+  restl_woerter = restl_woerter.slice(0,3);
+  restl_woerter.push(aktuelles_wort_leicht);
+
+  // Shuffle 4 Antwortmöglichkeiten
+  for (let i = restl_woerter.length - 1; i >= 0; i--) {
+    const j = Math.floor(Math.random() * (i+1));
+    [restl_woerter[i], restl_woerter[j]] = [restl_woerter[j], restl_woerter[i]];
+  }
+  // console.log("restl_woerter =", restl_woerter);
+
+  // Antwortmöglichkeiten anzeigen auf Buttons
+  antwort_1.querySelector("span").textContent = restl_woerter[0][Math.abs(1-sprachrichtung)];
+  antwort_2.querySelector("span").textContent = restl_woerter[1][Math.abs(1-sprachrichtung)];
+  antwort_3.querySelector("span").textContent = restl_woerter[2][Math.abs(1-sprachrichtung)];
+  antwort_4.querySelector("span").textContent = restl_woerter[3][Math.abs(1-sprachrichtung)];
+
+  // Finde richtige Antwort
+  antworten.forEach( (antw,i) => {
+    // console.log("antw.querySelector(span).textContent =", antw.querySelector("span").textContent);
+    // console.log("aktuelles_wort_leicht =", aktuelles_wort_leicht[Math.abs(1-sprachrichtung)].trim());
+    if (antw.querySelector("span").textContent === aktuelles_wort_leicht[Math.abs(1-sprachrichtung)].trim()) {
+      // console.log("IN IF");
+      antwort_richtig = antw;
+      antwort_richtig_idx = i;
+      // console.log("antwort_richtig: ", antwort_richtig);
+    }
+  })
+}
+
+
+
+function antwort_setzen(e) {
+  // Setze angeklickten Button auf geklickt und dunkel Blau
+  btn_antwort_gegeben = e.currentTarget;
+  antwort_gegeben_text_leicht = e.currentTarget.outerText.trim()
+  
+  // Setze Button zum Prüfen auf klickbar
+  btn_pruefen_leicht.setAttribute("id", "btn_weiter_leicht_drueckbar");
+  btn_pruefen_leicht.disabled = false;
+  btn_pruefen_leicht.style.pointerEvents = "auto";
+
+
+  // Alle bis auf den gedrückten Button kenntlich machen
+  antworten.forEach(antw => {
+    antw.removeAttribute("id", "btn_antwort_gegeben");
+  })
+  // btn_antwort_gegeben = e.currentTarget;
+  btn_antwort_gegeben.setAttribute("id", "btn_antwort_gegeben");
+
+
+}
+
+
+
+function pruefen_weiter_antwort_leicht_2() {
+  // Falls Button "Weiter" ist, gehe weiter zur nächsten Frage
+  if (btn_weiter_leicht.textContent === "Weiter") {
+    if (wort_idx === parseInt(eingabe_anzahl.value) - 1) {
+      ende_leicht();
+      return;
+    }
+    console.log("score_leicht (Weiter) =", score_leicht)
+
+    btn_weiter_leicht.disabled = true;
+    btn_weiter_leicht.style.pointerEvents = "none";
+    btn_weiter_leicht.textContent = "Prüfen";
+    wort_idx++;
+    update_progress(wort_idx, 0);
+    vokabel_aufsetzen();
+    button_auf_anfang_setzen();
+    btn_weiter_leicht.removeAttribute("id", "btn_weiter_leicht_drueckbar");
+
+    return;
+  }
+
+
+  // Prüfe die Antwort
+  if (antwort_gegeben_text_leicht === aktuelles_wort_leicht[Math.abs(1-sprachrichtung)].trim()) {
+    // console.log("RICHTIG!");
+    btn_antwort_gegeben.removeAttribute("id", "btn_antwort_gegeben");
+    btn_antwort_gegeben.setAttribute("id", "btn_antwort_richtig");
+    container_vokabeltraining_leicht.setAttribute("id", "container_spiel_einfach_richtig");
+    horizontale_linie_leicht.setAttribute("id", "horiz_linie_richtig");
+    
+    score_leicht++;
+  }
+  else {
+    // console.log("FALSCH!");
+    btn_antwort_gegeben.removeAttribute("id", "btn_antwort_gegeben");
+    btn_antwort_gegeben.setAttribute("id", "btn_antwort_falsch");
+    container_vokabeltraining_leicht.setAttribute("id", "container_spiel_einfach_falsch");
+    horizontale_linie_leicht.setAttribute("id", "horiz_linie_falsch");
+    antwort_richtig.setAttribute("id", "btn_antwort_richtig");
+  }
+
+  // Setze Antwort Buttons auf nicht-klickbar
+  antwort_1.disabled = true;
+  antwort_2.disabled = true;
+  antwort_3.disabled = true;
+  antwort_4.disabled = true;
+  antwort_1.style.pointerEvents = "none";
+  antwort_2.style.pointerEvents = "none";
+  antwort_3.style.pointerEvents = "none";
+  antwort_4.style.pointerEvents = "none";
+
+
+  // Von Prüfen zu Weiter Button
+  btn_weiter_leicht.setAttribute("id", "btn_weiter_leicht_drueckbar");
+  btn_weiter_leicht.disabled = false;
+  btn_weiter_leicht.style.pointerEvents = "auto";
+  btn_weiter_leicht.textContent = "Weiter";
+
+  update_progress(wort_idx, 0);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function ueberspringen_leicht() {
-  console.log("ÜBERSPRINGEN");
+  // console.log("ÜBERSPRINGEN");
+  console.log("score_leicht (Überspringen) =", score_leicht)
+  if (wort_idx === parseInt(eingabe_anzahl.value) - 1) {
+    ende_leicht();
+    return;
+  }
+
+  button_auf_anfang_setzen();
 
   aktuelles_wort_leicht = worter_shuffled[wort_idx]
   frage_wort_leicht.textContent = aktuelles_wort_leicht[Math.abs(sprachrichtung)];
@@ -439,13 +613,13 @@ function ueberspringen_leicht() {
 
   // Finde richtige Antwort
   antworten.forEach( (antw,i) => {
-    console.log("antw.querySelector(span).textContent =", antw.querySelector("span").textContent);
-    console.log("aktuelles_wort_leicht =", aktuelles_wort_leicht[Math.abs(1-sprachrichtung)].trim());
+    // console.log("antw.querySelector(span).textContent =", antw.querySelector("span").textContent);
+    // console.log("aktuelles_wort_leicht =", aktuelles_wort_leicht[Math.abs(1-sprachrichtung)].trim());
     if (antw.querySelector("span").textContent === aktuelles_wort_leicht[Math.abs(1-sprachrichtung)].trim()) {
-      console.log("IN IF");
+      // console.log("IN IF");
       antwort_richtig = antw;
       antwort_richtig_idx = i;
-      console.log("antwort_richtig: ", antwort_richtig);
+      // console.log("antwort_richtig: ", antwort_richtig);
     }
   })
 
@@ -456,9 +630,114 @@ function ueberspringen_leicht() {
 
 
 
+
+
+
+function button_auf_anfang_setzen() {
+  // Setze alles auf Standard
+  btn_weiter_leicht.textContent = "Prüfen";
+  antwort_1.removeAttribute("id");
+  antwort_2.removeAttribute("id");
+  antwort_3.removeAttribute("id");
+  antwort_4.removeAttribute("id");
+  container_vokabeltraining_leicht.removeAttribute("id", "container_spiel_einfach_richtig");
+  container_vokabeltraining_leicht.removeAttribute("id", "container_spiel_einfach_falsch");
+  horizontale_linie_leicht.removeAttribute("id", "horiz_linie_richtig");
+  horizontale_linie_leicht.removeAttribute("id", "horiz_linie_falsch");
+  antwort_1.disabled = false;
+  antwort_2.disabled = false;
+  antwort_3.disabled = false;
+  antwort_4.disabled = false;
+  antwort_1.style.pointerEvents = "auto";
+  antwort_2.style.pointerEvents = "auto";
+  antwort_3.style.pointerEvents = "auto";
+  antwort_4.style.pointerEvents = "auto";
+}
+
+
+
+
+function ende_leicht() {
+  score_leicht_text.textContent = "Score: " + score_leicht + " / " + anzahl_vokabeln;
+  btn_ueberspringen_leicht.setAttribute("class", "hide");
+  btn_weiter_leicht.setAttribute("class", "hide");
+  antwort_1.disabled = true;
+  antwort_2.disabled = true;
+  antwort_3.disabled = true;
+  antwort_4.disabled = true;
+  antwort_1.style.pointerEvents = "none";
+  antwort_2.style.pointerEvents = "none";
+  antwort_3.style.pointerEvents = "none";
+  antwort_4.style.pointerEvents = "none";
+
+  console.log("container_ende_leicht 0:", container_ende_leicht);
+  container_unten_leicht.classList.add("hide");
+  container_ende_leicht.classList.remove("hide");
+  console.log("container_ende_leicht 1:", container_ende_leicht);
+
+  console.log("ENDE");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function weiter_leicht() {
   if (wort_idx === parseInt(eingabe_anzahl.value)) {
-    score_leicht_text.textContent = "Score: " + score_leicht + " / " + anzahl_vokabeln;
+    score_leicht_text.textContent = "Score: " + score_leicht + " / " + anzahl_vokabeln_maximal;
     console.log("ENDE");
     return;
   }
@@ -557,9 +836,6 @@ function pruefe_antwort_leicht(e) {
     horizontale_linie_leicht.setAttribute("id", "horiz_linie_falsch");
 
     antwort_richtig.setAttribute("id", "btn_antwort_richtig");
-
-    // const neuerPfad_mitName = pfad_bilder_mitName + aktuelles_wort_leicht[0] + pfad_png;
-    // frage_bild.src = neuerPfad_mitName;
   }
 
   antwort_1.disabled = true;
@@ -577,6 +853,7 @@ function pruefe_antwort_leicht(e) {
   btn_weiter_leicht.textContent = "Prüfen";
 
 }
+
 
 
 
@@ -658,11 +935,12 @@ function weiter_schwer() {
 
 function update_progress(value, schwierigkeit) {
   value = Math.round(value);
-  let breite = ( (value) / eingabe_anzahl.value ) * 100;
+  let breite = ( (value + 1) / eingabe_anzahl.value ) * 100;
+  console.log("eingabe_anzahl.value =", eingabe_anzahl.value);
 
   if (schwierigkeit === 0) {
     document.querySelector(".progress_fuellen_leicht").style.width = `${breite}%`;
-    document.querySelector(".progress_text_leicht").textContent = wort_idx + " / " + eingabe_anzahl.value;
+    document.querySelector(".progress_text_leicht").textContent = (wort_idx + 1) + " / " + eingabe_anzahl.value;
   }
   else if (schwierigkeit === 1) {
   document.querySelector(".progress_fuellen_schwer").style.width = `${breite}%`;
