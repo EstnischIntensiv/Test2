@@ -103,7 +103,7 @@ var vokabeln_essen_und_trinken = [
   
   ["Obst", "puuvili"],
   ["Gemüse", "köögivili/juurvili"],
-  ["Äpfel", "õun"],
+  ["Apfel", "õun"],
   ["Banane", "banaan"],
   ["Beere", "mari"],
   ["Erdbeere", "maasikas"],
