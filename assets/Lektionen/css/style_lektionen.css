@@ -10,22 +10,49 @@ Was ist nötig:
 */
 
 
-.container_ueberschrift{
-  border: 4px solid var(--line-clr);
-  /* border: 4px solid var(--blau-1);*/
+.container_ueberschrift {
+  /* border: 4px solid var(--line-clr); */
+  border: 0.4rem solid var(--blau-1);
   /* border: 2px solid red; */
 
-  border-radius: 1em;
+  font-size: 3rem;
+
+  border-radius: 3rem;
   margin-top: 1%;
   padding: 5%;
   white-space: nowrap;
 }
 
 
+.container_kapitel, .container_unter_kapitel {
+  font-size: 3em;
+  margin-top: 1em;
+  padding: 1%;
+  white-space: nowrap;
+}
+
+.container_unter_kapitel{
+  font-size: 2em;
+  margin-top: 0.5em;
+}
 
 
+.box_1 {
+  border: 2px solid var(--line-clr);
+}
 
+.boxen_2_hor, .boxen_2_vert {
+  display: flex;
+  flex-direction: row;
+  gap: 5em;
+  
+  padding: 5%;
+}
 
+.boxen_2_vert {
+  flex-direction: column;
+  gap: 0.1em;
+}
 
 
 
