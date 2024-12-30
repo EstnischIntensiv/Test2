@@ -1,0 +1,55 @@
+/* LEKTIONEN ALLGEMEIN */
+
+/* 
+Was ist nötig:
+  Überschrift
+  Box für Text
+  Box für Fragen
+  Box für Lückentext
+
+*/
+
+
+.container_ueberschrift{
+  border: 4px solid var(--line-clr);
+  /* border: 4px solid var(--blau-1);*/
+  /* border: 2px solid red; */
+
+  border-radius: 1em;
+  margin-top: 1%;
+  padding: 5%;
+  white-space: nowrap;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
