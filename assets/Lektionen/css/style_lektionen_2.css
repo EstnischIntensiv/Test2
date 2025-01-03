@@ -1,0 +1,120 @@
+/* LEKTIONEN ALLGEMEIN (2) */
+
+/* 
+Was ist nötig:
+  Überschrift
+  Box für Text
+  Box für Fragen
+  Box für Lückentext
+*/
+
+
+/*
+Aufbau:
+  2-seitig (links und rechts).
+  Alles kleiner machen und an 100% anpassen im Browser.
+*/
+
+
+
+
+.inhalt_lektionen {
+  font-size: 14px;
+  font-family: sans-serif;
+  width: 80rem;
+}
+
+.container_ueberschrift {
+  /* border: 4px solid var(--line-clr); */
+  border: 0.4rem solid var(--blau-2);
+
+  font-size: 2.5rem;
+
+  border-radius: 3rem;
+  margin-top: 1%;
+  margin-bottom: 1em;
+  padding: 3%;
+  white-space: nowrap;
+}
+
+
+.container_kapitel, .container_unter_kapitel {
+  font-size: 3em;
+  padding: 1%;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.container_kapitel {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  text-decoration: underline;
+}
+
+.container_unter_kapitel{
+  font-size: 2em;
+}
+
+
+.Tabelle_1 {
+  border: 0.2rem solid var(--blau-3);
+  border-radius: 20px;
+  width: 50%;
+}
+
+
+
+
+.unterstrichen {
+  text-decoration: underline;
+}
+
+.zeile {
+  display: flex;
+  width: 40rem;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: left;
+  
+  margin-left: -1%;
+  margin-right: -1%;
+}
+
+.spalte_50 {
+  flex: 50%;
+  padding: 1em;
+}
+
+.spalte_100 {
+  flex: 100%;
+  padding: 1em;
+}
+
+table {
+  width: 100%;
+  /*border: 1px solid var(--blau-1);*/
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
