@@ -19,12 +19,12 @@ Was ist nötig:
   /* border: 4px solid var(--line-clr); */
   border: 0.4rem solid var(--blau-2);
 
-  font-size: 3rem;
+  font-size: 2.5rem;
 
   border-radius: 3rem;
   margin-top: 1%;
   margin-bottom: 1em;
-  padding: 5%;
+  padding: 3%;
   white-space: nowrap;
 }
 
