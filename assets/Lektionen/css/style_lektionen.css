@@ -12,6 +12,7 @@ Was ist nötig:
 .inhalt_lektionen {
   font-size: 14px;
   font-family: sans-serif;
+  width: 80rem;
 }
 
 .container_ueberschrift {
@@ -49,6 +50,7 @@ Was ist nötig:
 .Tabelle_1 {
   border: 0.2rem solid var(--blau-3);
   border-radius: 20px;
+  width: 50%;
 }
 
 
@@ -64,6 +66,7 @@ Was ist nötig:
   font-size: 20px;
   font-weight: bold;
   text-decoration: none;
+  text-align: left;
   
   margin-left: -1%;
   margin-right: -1%;

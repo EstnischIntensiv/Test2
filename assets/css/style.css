@@ -118,6 +118,7 @@ body{
 }
 #sidebar a span, #sidebar .dropdown-btn span{
   flex-grow: 1;
+  font-size: 14px;
 }
 #sidebar a:hover, #sidebar .dropdown-btn:hover{
   background-color: var(--hover-clr);
@@ -243,10 +244,11 @@ body{
 .btn_ungedrueckt .icon{
   color: var(--icon-farbe);
   margin-right: 20px;
+  font-size: 10px;
 }
 .btn_ungedrueckt span{
   color: var(--icon-farbe);
-  font-size: 18px;
+  font-size: 14px;
 }
 .btn_ungedrueckt:hover,
 .btn_gedrueckt:hover {
@@ -272,10 +274,11 @@ body{
 .btn_gedrueckt .icon{
   color: var(--blau-2);
   margin-right: 20px;
+  font-size: 10px;
 }
 .btn_gedrueckt span{
   color: var(--blau-2);
-  font-size: 18px;
+  font-size: 14px;
 }
 /* .btn_gedrueckt:hover {
   background-color: var(--hover-clr);
@@ -315,13 +318,14 @@ body{
 .btn_spiele .icon {
   color: white;
   margin-right: 10px;
+  font-size: 10px;
 }
 .btn_home span,
 .btn_lektionen span,
 .btn_vokabeltrainer span, 
 .btn_spiele span {
   flex-grow: 1;
-  font-size: 18px;
+  font-size: 14px;
   color: white;
 }
 .btn_home:hover,
@@ -369,6 +373,7 @@ body{
 .btn_lektionen_gedr .icon,
 .btn_vokabeltrainer_gedr .icon,
 .btn_spiele_gedr .icon {
+  font-size: 10px;
   margin-right: 10px;
 }
 .btn_home_gedr span,
@@ -376,7 +381,7 @@ body{
 .btn_vokabeltrainer_gedr span,
 .btn_spiele_gedr span {
   flex-grow: 1;
-  font-size: 18px;
+  font-size: 14px;
   color: var(--blau-2);
 }
 .btn_home_gedr:hover,
@@ -418,7 +423,7 @@ body{
 .btn_lek_i_ungedr span,
 .btn_vokabeltrainer_i_ungedr span, 
 .btn_spiele_i_ungedr span {
-  font-size: 16px;
+  font-size: 14px;
   margin-left: 18px;
 }
 .btn_lek_i_ungedr:hover,
@@ -448,7 +453,7 @@ body{
 .btn_vokabeltrainer_i_gedr span,
 .btn_spiele_i_gedr span {
   color: var(--blau-2);
-  font-size: 16px;
+  font-size: 14px;
   margin-left: 18px;
 }
 .btn_lek_i_gedr:hover,
